@@ -1,0 +1,37 @@
+{
+  "name": "@basementuniverse/vec",
+  "version": "1.0.0",
+  "description": "A small vector and matrix library",
+  "main": "vec.js",
+  "types": "vec.d.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "qunit",
+    "build": "gulp",
+    "build-docs": "node node_modules/jsdoc-to-markdown/bin/cli.js vec.js --template readme-template.md > README.md",
+    "publish": "npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basementuniverse/vec.git"
+  },
+  "author": "Gordon Larrigan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basementuniverse/vec/issues"
+  },
+  "homepage": "https://github.com/basementuniverse/vec#readme",
+  "dependencies": {
+    "@basementuniverse/utils": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/typescript": "^2.0.0",
+    "gulp": "^4.0.2",
+    "gulp-rename": "^2.0.0",
+    "gulp-terser": "^1.4.0",
+    "jsdoc-to-markdown": "^6.0.1",
+    "qunit": "^2.11.2"
+  }
+}

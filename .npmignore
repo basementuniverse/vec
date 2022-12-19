@@ -1,0 +1,9 @@
+# tests
+test
+
+# build files
+gulpfile.js
+readme-template.md
+
+# editor settings
+.editorconfig
