@@ -1,7 +1,7 @@
 const { times, chunk, dot } = require('@basementuniverse/utils');
 
 /**
- * @overview A library of useful functions
+ * @overview A small vector and matrix library
  * @author Gordon Larrigan
  */
 
