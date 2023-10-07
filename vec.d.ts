@@ -32,7 +32,7 @@ declare const vec: {
    * let c = vec(a);     // (3, 2)
    * let d = vec();      // (0, 0)
    */
-  (x?: number, y?: number): vec,
+  (x?: number | vec, y?: number): vec,
 
   /**
    * Get the components of a vector as an array
