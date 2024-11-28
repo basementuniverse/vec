@@ -7,141 +7,166 @@ const { times, chunk, dot } = require('@basementuniverse/utils');
 
 /**
  * A 2d vector
- * @typedef {Object} vec
+ * @typedef {Object} vec2
  * @property {number} x The x component of the vector
  * @property {number} y The y component of the vector
  */
 
 /**
- * Create a new vector
- * @param {number|vec} [x] The x component of the vector, or a vector to copy
+ * Create a new 2d vector
+ * @param {number|vec2} [x] The x component of the vector, or a vector to copy
  * @param {number} [y] The y component of the vector
- * @return {vec} A new vector
- * @example <caption>Various ways to initialise a vector</caption>
- * let a = vec(3, 2);  // (3, 2)
- * let b = vec(4);     // (4, 4)
- * let c = vec(a);     // (3, 2)
- * let d = vec();      // (0, 0)
+ * @return {vec2} A new 2d vector
+ * @example <caption>various ways to initialise a vector</caption>
+ * let a = vec2(3, 2); // (3, 2)
+ * let b = vec2(4);    // (4, 4)
+ * let c = vec2(a);    // (3, 2)
+ * let d = vec2();     // (0, 0)
  */
-const vec = (x, y) => (!x && !y ?
-  { x: 0, y: 0 } : (typeof x === 'object' ?
-    { x: x.x || 0, y: x.y || 0 } : (y === null || y === undefined ?
-      { x: x, y: x } : { x: x, y: y })
-  )
-);
+const vec2 = (x, y) => {
+  if (!x && !y) {
+    return { x: 0, y: 0 };
+  }
+  if (typeof x === 'object' && 'x' in x && 'y' in x) {
+    return { x: x.x || 0, y: x.y || 0 };
+  }
+  return { x: x, y: y ?? x };
+};
 
 /**
  * Get the components of a vector as an array
- * @param {vec} a The vector to get components from
+ * @param {vec2} a The vector to get components from
  * @return {Array<number>} The vector components as an array
  */
-vec.components = a => [a.x, a.y];
+vec2.components = a => [a.x, a.y];
+
+/**
+ * Create a vector from an array of components
+ * @param {Array<number>} components The components of the vector
+ * @return {vec2} A new vector
+ */
+vec2.fromComponents = components => vec2(...components.slice(0, 2));
 
 /**
  * Return a unit vector (1, 0)
- * @return {vec} A unit vector (1, 0)
+ * @return {vec2} A unit vector (1, 0)
  */
-vec.ux = () => vec(1, 0);
+vec2.ux = () => vec2(1, 0);
 
 /**
  * Return a unit vector (0, 1)
- * @return {vec} A unit vector (0, 1)
+ * @return {vec2} A unit vector (0, 1)
  */
-vec.uy = () => vec(0, 1);
+vec2.uy = () => vec2(0, 1);
 
 /**
  * Add vectors
- * @param {vec} a Vector a
- * @param {vec} b Vector b
- * @return {vec} a + b
+ * @param {vec2} a Vector a
+ * @param {vec2} b Vector b
+ * @return {vec2} a + b
  */
-vec.add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y });
+vec2.add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y });
 
 /**
  * Scale a vector
- * @param {vec} a Vector a
+ * @param {vec2} a Vector a
  * @param {number} b Scalar b
- * @return {vec} a * b
+ * @return {vec2} a * b
  */
-vec.mul = (a, b) => ({ x: a.x * b, y: a.y * b });
+vec2.mul = (a, b) => ({ x: a.x * b, y: a.y * b });
 
 /**
  * Subtract vectors
- * @param {vec} a Vector a
- * @param {vec} b Vector b
- * @return {vec} a - b
+ * @param {vec2} a Vector a
+ * @param {vec2} b Vector b
+ * @return {vec2} a - b
  */
-vec.sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y });
+vec2.sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y });
 
 /**
  * Get the length of a vector
- * @param {vec} a Vector a
+ * @param {vec2} a Vector a
  * @return {number} |a|
  */
-vec.len = a => Math.sqrt(a.x * a.x + a.y * a.y);
+vec2.len = a => Math.sqrt(a.x * a.x + a.y * a.y);
 
 /**
  * Get the length of a vector using taxicab geometry
- * @param {vec} a Vector a
+ * @param {vec2} a Vector a
  * @return {number} |a|
  */
-vec.manhattan = a => Math.abs(a.x) + Math.abs(a.y);
+vec2.manhattan = a => Math.abs(a.x) + Math.abs(a.y);
 
 /**
  * Normalise a vector
- * @param {vec} a The vector to normalise
- * @return {vec} ^a
+ * @param {vec2} a The vector to normalise
+ * @return {vec2} ^a
  */
-vec.nor = a => {
-  let len = vec.len(a);
-  return len ? { x: a.x / len, y: a.y / len } : vec();
+vec2.nor = a => {
+  let len = vec2.len(a);
+  return len ? { x: a.x / len, y: a.y / len } : vec2();
 };
 
 /**
  * Get a dot product of vectors
- * @param {vec} a Vector a
- * @param {vec} b Vector b
+ * @param {vec2} a Vector a
+ * @param {vec2} b Vector b
  * @return {number} a ∙ b
  */
-vec.dot = (a, b) => a.x * b.x + a.y * b.y;
+vec2.dot = (a, b) => a.x * b.x + a.y * b.y;
 
 /**
  * Rotate a vector by r radians
- * @param {vec} a The vector to rotate
+ * @param {vec2} a The vector to rotate
  * @param {number} r The angle to rotate by, measured in radians
- * @return {vec} A rotated vector
+ * @return {vec2} A rotated vector
  */
-vec.rot = (a, r) => {
+vec2.rot = (a, r) => {
   let s = Math.sin(r),
     c = Math.cos(r);
   return { x: c * a.x - s * a.y, y: s * a.x + c * a.y };
-}
+};
+
+/**
+ * Fast method to rotate a vector by -90, 90 or 180 degrees
+ * @param {vec2} a The vector to rotate
+ * @param {number} r 1 for 90 degrees (cw), -1 for -90 degrees (ccw), 2 or -2 for 180 degrees
+ * @return {vec2} A rotated vector
+ */
+vec2.rotf = (a, r) => {
+  switch (r) {
+    case 1: return vec2(a.y, -a.x);
+    case -1: return vec2(-a.y, a.x);
+    case 2: case -2: return vec2(-a.x, -a.y);
+    default: return a;
+  }
+};
 
 /**
  * Check if two vectors are equal
- * @param {vec} a Vector a
- * @param {vec} b Vector b
+ * @param {vec2} a Vector a
+ * @param {vec2} b Vector b
  * @return {boolean} True if vectors a and b are equal, false otherwise
  */
-vec.eq = (a, b) => a.x === b.x && a.y === b.y;
+vec2.eq = (a, b) => a.x === b.x && a.y === b.y;
 
 /**
  * Get the angle of a vector
- * @param {vec} a Vector a
+ * @param {vec2} a Vector a
  * @return {number} The angle of vector a in radians
  */
-vec.rad = a => Math.atan2(a.y, a.x);
+vec2.rad = a => Math.atan2(a.y, a.x);
 
 /**
  * Copy a vector
- * @param {vec} a The vector to copy
- * @return {vec} A copy of vector a
+ * @param {vec2} a The vector to copy
+ * @return {vec2} A copy of vector a
  */
-vec.cpy = a => vec(a);
+vec2.cpy = a => vec2(a);
 
 /**
- * A function to call on each component of a vector
- * @callback vectorMapCallback
+ * A function to call on each component of a 2d vector
+ * @callback vec2MapCallback
  * @param {number} value The component value
  * @param {'x' | 'y'} label The component label (x or y)
  * @return {number} The mapped component
@@ -149,19 +174,440 @@ vec.cpy = a => vec(a);
 
 /**
  * Call a function on each component of a vector and build a new vector from the results
- * @param {vec} a Vector a
- * @param {vectorMapCallback} f The function to call on each component of the vector
- * @return {vec} Vector a mapped through f
+ * @param {vec2} a Vector a
+ * @param {vec2MapCallback} f The function to call on each component of the vector
+ * @return {vec2} Vector a mapped through f
  */
-vec.map = (a, f) => ({ x: f(a.x, 'x'), y: f(a.y, 'y') });
+vec2.map = (a, f) => ({ x: f(a.x, 'x'), y: f(a.y, 'y') });
 
 /**
  * Convert a vector into a string
- * @param {vec} a The vector to convert
+ * @param {vec2} a The vector to convert
  * @param {string} [s=', '] The separator string
  * @return {string} A string representation of the vector
  */
-vec.str = (a, s = ', ') => `${a.x}${s}${a.y}`;
+vec2.str = (a, s = ', ') => `${a.x}${s}${a.y}`;
+
+/**
+ * Swizzle a vector with a string of component labels
+ *
+ * The string can contain:
+ * - `x` or `y`
+ * - `u` or `v` (aliases for `x` and `y`, respectively)
+ * - `X`, `Y`, `U`, `V` (negated versions of the above)
+ * - `0` or `1` (these will be passed through unchanged)
+ * - `.` to return the component that would normally be at this position (or 0)
+ *
+ * Any other characters will default to 0
+ * @param {vec2} a The vector to swizzle
+ * @param {string} [s='..'] The swizzle string
+ * @return {Array<number>} The swizzled components
+ * @example <caption>swizzling a vector</caption>
+ * let a = vec2(3, -2);
+ * vec2.swiz(a, 'x');    // [3]
+ * vec2.swiz(a, 'yx');   // [-2, 3]
+ * vec2.swiz(a, 'xY');   // [3, 2]
+ * vec2.swiz(a, 'Yy');   // [2, -2]
+ * vec2.swiz(a, 'x.x');  // [3, -2, 3]
+ * vec2.swiz(a, 'y01x'); // [-2, 0, 1, 3]
+ */
+vec2.swiz = (a, s = '..') => {
+  const result = [];
+  s.split('').forEach((c, i) => {
+    switch (c) {
+      case 'x': case 'u': result.push(a.x); break;
+      case 'y': case 'v': result.push(a.y); break;
+      case 'X': case 'U': result.push(-a.x); break;
+      case 'Y': case 'V': result.push(-a.y); break;
+      case '0': result.push(0); break;
+      case '1': result.push(1); break;
+      case '.': result.push([a.x, a.y][i] ?? 0); break;
+      default: result.push(0);
+    }
+  });
+  return result;
+};
+
+/**
+ * Polar coordinates for a 2d vector
+ * @typedef {Object} polarCoordinates2d
+ * @property {number} r The magnitude (radius) of the vector
+ * @property {number} theta The angle of the vector
+ */
+
+/**
+ * Convert a vector into polar coordinates
+ * @param {vec2} a The vector to convert
+ * @return {polarCoordinates2d} The magnitude and angle of the vector
+ */
+vec2.polar = a => ({ r: vec2.len(a), theta: Math.atan2(a.y, a.x) });
+
+/**
+ * Convert polar coordinates into a vector
+ * @param {number} r The magnitude (radius) of the vector
+ * @param {number} theta The angle of the vector
+ * @return {vec2} A vector with the given angle and magnitude
+ */
+vec2.fromPolar = (r, theta) => vec2(r * Math.cos(theta), r * Math.sin(theta));
+
+/**
+ * A 3d vector
+ * @typedef {Object} vec3
+ * @property {number} x The x component of the vector
+ * @property {number} y The y component of the vector
+ * @property {number} z The z component of the vector
+ */
+
+/**
+ * Create a new 3d vector
+ * @param {number|vec3|vec2} [x] The x component of the vector, or a vector to copy
+ * @param {number} [y] The y component of the vector, or the z component if x is a vec2
+ * @param {number} [z] The z component of the vector
+ * @return {vec3} A new 3d vector
+ * @example <caption>various ways to initialise a vector</caption>
+ * let a = vec3(3, 2, 1);       // (3, 2, 1)
+ * let b = vec3(4, 5);          // (4, 5, 0)
+ * let c = vec3(6);             // (6, 6, 6)
+ * let d = vec3(a);             // (3, 2, 1)
+ * let e = vec3();              // (0, 0, 0)
+ * let f = vec3(vec2(1, 2), 3); // (1, 2, 3)
+ * let g = vec3(vec2(4, 5));    // (4, 5, 0)
+ */
+const vec3 = (x, y, z) => {
+  if (!x && !y && !z) {
+    return { x: 0, y: 0, z: 0 };
+  }
+  if (typeof x === 'object' && 'x' in x && 'y' in x && 'z' in x) {
+    return { x: x.x || 0, y: x.y || 0, z: x.z || 0 };
+  }
+  if (typeof x === 'object' && !('z' in x)) {
+    return { x: x.x || 0, y: x.y || 0, z: y || 0 };
+  }
+  return { x: x, y: y ?? x, z: z ?? x };
+};
+
+/**
+ * Get the components of a vector as an array
+ * @param {vec3} a The vector to get components from
+ * @return {Array<number>} The vector components as an array
+ */
+vec3.components = a => [a.x, a.y, a.z];
+
+/**
+ * Create a vector from an array of components
+ * @param {Array<number>} components The components of the vector
+ * @return {vec3} A new vector
+ */
+vec3.fromComponents = components => vec3(...components.slice(0, 3));
+
+/**
+ * Return a unit vector (1, 0, 0)
+ * @return {vec3} A unit vector (1, 0, 0)
+ */
+vec3.ux = () => vec3(1, 0, 0);
+
+/**
+ * Return a unit vector (0, 1, 0)
+ * @return {vec3} A unit vector (0, 1, 0)
+ */
+vec3.uy = () => vec3(0, 1, 0);
+
+/**
+ * Return a unit vector (0, 0, 1)
+ * @return {vec3} A unit vector (0, 0, 1)
+ */
+vec3.uz = () => vec3(0, 0, 1);
+
+/**
+ * Add vectors
+ * @param {vec3} a Vector a
+ * @param {vec3} b Vector b
+ * @return {vec3} a + b
+ */
+vec3.add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y, z: a.z + b.z });
+
+/**
+ * Scale a vector
+ * @param {vec3} a Vector a
+ * @param {number} b Scalar b
+ * @return {vec3} a * b
+ */
+vec3.mul = (a, b) => ({ x: a.x * b, y: a.y * b, z: a.z * b });
+
+/**
+ * Subtract vectors
+ * @param {vec3} a Vector a
+ * @param {vec3} b Vector b
+ * @return {vec3} a - b
+ */
+vec3.sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y, z: a.z - b.z });
+
+/**
+ * Get the length of a vector
+ * @param {vec3} a Vector a
+ * @return {number} |a|
+ */
+vec3.len = a => Math.sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
+
+/**
+ * Get the length of a vector using taxicab geometry
+ * @param {vec3} a Vector a
+ * @return {number} |a|
+ */
+vec3.manhattan = a => Math.abs(a.x) + Math.abs(a.y) + Math.abs(a.z);
+
+/**
+ * Normalise a vector
+ * @param {vec3} a The vector to normalise
+ * @return {vec3} ^a
+ */
+vec3.nor = a => {
+  let len = vec3.len(a);
+  return len ? { x: a.x / len, y: a.y / len, z: a.z / len } : vec3();
+};
+
+/**
+ * Get a dot product of vectors
+ * @param {vec3} a Vector a
+ * @param {vec3} b Vector b
+ * @return {number} a ∙ b
+ */
+vec3.dot = (a, b) => a.x * b.x + a.y * b.y + a.z * b.z;
+
+/**
+ * Rotate a vector using a rotation matrix
+ * @param {vec3} a The vector to rotate
+ * @param {mat} m The rotation matrix
+ * @return {vec3} A rotated vector
+ */
+vec3.rot = (a, m) => vec3(
+  vec3.dot(vec3.fromComponents(mat.row(m, 1)), a),
+  vec3.dot(vec3.fromComponents(mat.row(m, 2)), a),
+  vec3.dot(vec3.fromComponents(mat.row(m, 3)), a)
+);
+
+/**
+ * Rotate a vector by r radians around the x axis
+ * @param {vec3} a The vector to rotate
+ * @param {number} r The angle to rotate by, measured in radians
+ * @return {vec3} A rotated vector
+ */
+vec3.rotx = (a, r) => vec3(
+  a.x,
+  a.y * Math.cos(r) - a.z * Math.sin(r),
+  a.y * Math.sin(r) + a.z * Math.cos(r)
+);
+
+/**
+ * Rotate a vector by r radians around the y axis
+ * @param {vec3} a The vector to rotate
+ * @param {number} r The angle to rotate by, measured in radians
+ * @return {vec3} A rotated vector
+ */
+vec3.roty = (a, r) => vec3(
+  a.x * Math.cos(r) + a.z * Math.sin(r),
+  a.y,
+  -a.x * Math.sin(r) + a.z * Math.cos(r)
+);
+
+/**
+ * Rotate a vector by r radians around the z axis
+ * @param {vec3} a The vector to rotate
+ * @param {number} r The angle to rotate by, measured in radians
+ * @return {vec3} A rotated vector
+ */
+vec3.rotz = (a, r) => vec3(
+  a.x * Math.cos(r) - a.y * Math.sin(r),
+  a.x * Math.sin(r) + a.y * Math.cos(r),
+  a.z
+);
+
+/**
+ * Rotate a vector using a quaternion
+ * @param {vec3} a The vector to rotate
+ * @param {Array<number>} q The quaternion to rotate by
+ * @return {vec3} A rotated vector
+ */
+vec3.rotq = (v, q) => {
+  if (q.length !== 4) {
+    return vec3();
+  }
+
+  const d = Math.sqrt(q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3]);
+  if (d === 0) {
+    return vec3();
+  }
+
+  const uq = [q[0] / d, q[1] / d, q[2] / d, q[3] / d];
+  const u = vec3(...uq.slice(0, 3));
+  const s = uq[3];
+  return vec3.add(
+    vec3.add(
+      vec3.mul(u, 2 * vec3.dot(u, v)),
+      vec3.mul(v, s * s - vec3.dot(u, u))
+    ),
+    vec3.mul(vec3.cross(u, v), 2 * s)
+  );
+};
+
+/**
+ * Rotate a vector using Euler angles
+ * @param {vec3} a The vector to rotate
+ * @param {vec3} e The Euler angles to rotate by
+ * @return {vec3} A rotated vector
+ */
+vec3.rota = (a, e) => vec3.rotz(vec3.roty(vec3.rotx(a, e.x), e.y), e.z);
+
+/**
+ * Get the cross product of vectors
+ * @param {vec3} a Vector a
+ * @param {vec3} b Vector b
+ * @return {vec3} a × b
+ */
+vec3.cross = (a, b) => vec3(
+  a.y * b.z - a.z * b.y,
+  a.z * b.x - a.x * b.z,
+  a.x * b.y - a.y * b.x
+);
+
+/**
+ * Check if two vectors are equal
+ * @param {vec3} a Vector a
+ * @param {vec3} b Vector b
+ * @return {boolean} True if vectors a and b are equal, false otherwise
+ */
+vec3.eq = (a, b) => a.x === b.x && a.y === b.y && a.z === b.z;
+
+/**
+ * Get the angle of a vector from the x axis
+ * @param {vec3} a Vector a
+ * @return {number} The angle of vector a in radians
+ */
+vec3.radx = a => Math.atan2(a.z, a.y);
+
+/**
+ * Get the angle of a vector from the y axis
+ * @param {vec3} a Vector a
+ * @return {number} The angle of vector a in radians
+ */
+vec3.rady = a => Math.atan2(a.x, a.y);
+
+/**
+ * Get the angle of a vector from the z axis
+ * @param {vec3} a Vector a
+ * @return {number} The angle of vector a in radians
+ */
+vec3.radz = a => Math.atan2(a.y, a.z);
+
+/**
+ * Copy a vector
+ * @param {vec3} a The vector to copy
+ * @return {vec3} A copy of vector a
+ */
+vec3.cpy = a => vec3(a);
+
+/**
+ * A function to call on each component of a 3d vector
+ * @callback vec3MapCallback
+ * @param {number} value The component value
+ * @param {'x' | 'y' | 'z'} label The component label (x, y or z)
+ * @return {number} The mapped component
+ */
+
+/**
+ * Call a function on each component of a vector and build a new vector from the results
+ * @param {vec3} a Vector a
+ * @param {vec3MapCallback} f The function to call on each component of the vector
+ * @return {vec3} Vector a mapped through f
+ */
+vec3.map = (a, f) => ({ x: f(a.x, 'x'), y: f(a.y, 'y'), z: f(a.z, 'z') });
+
+/**
+ * Convert a vector into a string
+ * @param {vec3} a The vector to convert
+ * @param {string} [s=', '] The separator string
+ * @return {string} A string representation of the vector
+ */
+vec3.str = (a, s = ', ') => `${a.x}${s}${a.y}${s}${a.z}`;
+
+/**
+ * Swizzle a vector with a string of component labels
+ *
+ * The string can contain:
+ * - `x`, `y` or `z`
+ * - `u`, `v` or `w` (aliases for `x`, `y` and `z`, respectively)
+ * - `r`, `g` or `b` (aliases for `x`, `y` and `z`, respectively)
+ * - `X`, `Y`, `Z`, `U`, `V`, `W`, `R`, `G`, `B` (negated versions of the above)
+ * - `0` or `1` (these will be passed through unchanged)
+ * - `.` to return the component that would normally be at this position (or 0)
+ *
+ * Any other characters will default to 0
+ * @param {vec3} a The vector to swizzle
+ * @param {string} [s='...'] The swizzle string
+ * @return {Array<number>} The swizzled components
+ * @example <caption>swizzling a vector</caption>
+ * let a = vec3(3, -2, 1);
+ * vec3.swiz(a, 'x');     // [3]
+ * vec3.swiz(a, 'zyx');   // [1, -2, 3]
+ * vec3.swiz(a, 'xYZ');   // [3, 2, -1]
+ * vec3.swiz(a, 'Zzx');   // [-1, 1, 3]
+ * vec3.swiz(a, 'x.x');   // [3, -2, 3]
+ * vec3.swiz(a, 'y01zx'); // [-2, 0, 1, 1, 3]
+ */
+vec3.swiz = (a, s = '...') => {
+  const result = [];
+  s.split('').forEach((c, i) => {
+    switch (c) {
+      case 'x': case 'u': case 'r': result.push(a.x); break;
+      case 'y': case 'v': case 'g': result.push(a.y); break;
+      case 'z': case 'w': case 'b': result.push(a.z); break;
+      case 'X': case 'U': case 'R': result.push(-a.x); break;
+      case 'Y': case 'V': case 'G': result.push(-a.y); break;
+      case 'Z': case 'W': case 'B': result.push(-a.z); break;
+      case '0': result.push(0); break;
+      case '1': result.push(1); break;
+      case '.': result.push([a.x, a.y, a.z][i] ?? 0); break;
+      default: result.push(0);
+    }
+  });
+  return result;
+};
+
+/**
+ * Polar coordinates for a 3d vector
+ * @typedef {Object} polarCoordinates3d
+ * @property {number} r The magnitude (radius) of the vector
+ * @property {number} theta The tilt angle of the vector
+ * @property {number} phi The pan angle of the vector
+ */
+
+/**
+ * Convert a vector into polar coordinates
+ * @param {vec3} a The vector to convert
+ * @return {polarCoordinates3d} The magnitude, tilt and pan of the vector
+ */
+vec3.polar = a => {
+  let r = vec3.len(a),
+    theta = Math.acos(a.y / r),
+    phi = Math.atan2(a.z, a.x);
+  return { r, theta, phi };
+};
+
+/**
+ * Convert polar coordinates into a vector
+ * @param {number} r The magnitude (radius) of the vector
+ * @param {number} theta The tilt of the vector
+ * @param {number} phi The pan of the vector
+ * @return {vec3} A vector with the given angle and magnitude
+ */
+vec3.fromPolar = (r, theta, phi) => {
+  const sinTheta = Math.sin(theta);
+  return vec3(
+    r * sinTheta * Math.cos(phi),
+    r * Math.cos(theta),
+    r * sinTheta * Math.sin(phi)
+  );
+};
 
 /**
  * A matrix
@@ -397,5 +843,5 @@ mat.map = (a, f) => mat(a.m, a.n, a.entries.map(f));
 mat.str = (a, ms = ', ', ns = '\n') => chunk(a.entries, a.n).map(r => r.join(ms)).join(ns);
 
 if (typeof module !== 'undefined') {
-  module.exports = { vec, mat };
+  module.exports = { vec2, vec3, mat };
 }

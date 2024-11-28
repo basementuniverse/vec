@@ -1,10 +1,6 @@
 const utils = require('@basementuniverse/utils');
 const { mat } = require('../vec.js');
 
-const times = (f, n) => Array(n).fill(0).map((_, i) => f(i));
-const range = n => utils.times(i => i, n);
-const chunk = (a, n) => utils.times(i => a.slice(i * n, i * n + n), Math.ceil(a.length / n));
-
 QUnit.module('Matrix tests');
 
 QUnit.test('Initialise a matrix', assert => {
@@ -243,7 +239,7 @@ QUnit.test('Matrix inverse', assert => {
   assert.equal(aInverse.n, 3);
   const expectedEntries = [0.2, 0.2, 0, -0.2, 0.3, 1, 0.2, -0.3, 0];
   for (let i = 0; i < expectedEntries.length; i++) {
-    assert.equal(utils.floatEquals(aInverse.entries[i], expectedEntries[i]), true);
+    assert.ok(utils.floatEquals(aInverse.entries[i], expectedEntries[i], PRECISION));
   }
 
   // Invert a non-square matrix
