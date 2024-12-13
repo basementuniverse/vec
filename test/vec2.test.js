@@ -1,5 +1,6 @@
-const utils = require('@basementuniverse/utils');
 const { vec2 } = require('../vec.js');
+
+const floatEquals = (a, b, p = Number.EPSILON) => Math.abs(a - b) < p;
 
 const PRECISION = 0.001;
 
@@ -87,8 +88,8 @@ QUnit.test('Vector dot product', assert => {
 QUnit.test('Vector rotation', assert => {
   const a = vec2(1, 0);
   const rotatedVector = vec2.rot(a, Math.PI / 2);
-  assert.ok(utils.floatEquals(rotatedVector.x, 0, PRECISION));
-  assert.ok(utils.floatEquals(rotatedVector.y, 1, PRECISION));
+  assert.ok(floatEquals(rotatedVector.x, 0, PRECISION));
+  assert.ok(floatEquals(rotatedVector.y, 1, PRECISION));
 });
 
 QUnit.test('Fast vector rotation', assert => {
@@ -152,12 +153,12 @@ QUnit.test('Swizzling a vector', assert => {
 QUnit.test('Vector to polar coordinates', assert => {
   const a = vec2(1, 1);
   const p = vec2.polar(a);
-  assert.ok(utils.floatEquals(p.r, Math.sqrt(2), PRECISION));
-  assert.ok(utils.floatEquals(p.theta, Math.PI / 4, PRECISION));
+  assert.ok(floatEquals(p.r, Math.sqrt(2), PRECISION));
+  assert.ok(floatEquals(p.theta, Math.PI / 4, PRECISION));
 });
 
 QUnit.test('Polar coordinates to vector', assert => {
   const p = vec2.fromPolar(Math.sqrt(2), Math.PI / 4);
-  assert.ok(utils.floatEquals(p.x, 1, PRECISION));
-  assert.ok(utils.floatEquals(p.y, 1, PRECISION));
+  assert.ok(floatEquals(p.x, 1, PRECISION));
+  assert.ok(floatEquals(p.y, 1, PRECISION));
 });

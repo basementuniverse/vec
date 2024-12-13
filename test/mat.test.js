@@ -1,5 +1,10 @@
-const utils = require('@basementuniverse/utils');
 const { mat } = require('../vec.js');
+
+const times = (f, n) => Array(n).fill(0).map((_, i) => f(i));
+const range = n => times(i => i, n);
+const floatEquals = (a, b, p = Number.EPSILON) => Math.abs(a - b) < p;
+
+const PRECISION = 0.001;
 
 QUnit.module('Matrix tests');
 
@@ -88,7 +93,7 @@ QUnit.test('Identity matrix', assert => {
 });
 
 QUnit.test('Get and set matrix entries', assert => {
-  const a = mat(3, 3, utils.range(9));
+  const a = mat(3, 3, range(9));
 
   // Get
   assert.equal(mat.get(a, 1, 1), 0);
@@ -103,7 +108,7 @@ QUnit.test('Get and set matrix entries', assert => {
 });
 
 QUnit.test('Get matrix rows/columns', assert => {
-  const a = mat(4, 4, utils.range(16));
+  const a = mat(4, 4, range(16));
 
   // Rows
   assert.deepEqual(mat.row(a, 1), [0, 1, 2, 3]);
@@ -180,7 +185,7 @@ QUnit.test('Matrix transposition', assert => {
 QUnit.test('Matrix minor', assert => {
 
   // Minor of a square matrix
-  const a = mat(4, 4, utils.range(16));
+  const a = mat(4, 4, range(16));
   assert.deepEqual(mat.minor(a, 2, 2), {
     m: 3,
     n: 3,
@@ -239,7 +244,7 @@ QUnit.test('Matrix inverse', assert => {
   assert.equal(aInverse.n, 3);
   const expectedEntries = [0.2, 0.2, 0, -0.2, 0.3, 1, 0.2, -0.3, 0];
   for (let i = 0; i < expectedEntries.length; i++) {
-    assert.ok(utils.floatEquals(aInverse.entries[i], expectedEntries[i], PRECISION));
+    assert.ok(floatEquals(aInverse.entries[i], expectedEntries[i], PRECISION));
   }
 
   // Invert a non-square matrix

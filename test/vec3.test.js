@@ -1,5 +1,6 @@
-const utils = require('@basementuniverse/utils');
 const { vec3, mat } = require('../vec.js');
+
+const floatEquals = (a, b, p = Number.EPSILON) => Math.abs(a - b) < p;
 
 const PRECISION = 0.001;
 
@@ -79,9 +80,9 @@ QUnit.test('Normalised vector', assert => {
   const a = vec3(2, 3, 4);
   const len = vec3.len(a);
   const normalized = vec3.nor(a);
-  assert.ok(utils.floatEquals(normalized.x, 2 / len, PRECISION));
-  assert.ok(utils.floatEquals(normalized.y, 3 / len, PRECISION));
-  assert.ok(utils.floatEquals(normalized.z, 4 / len, PRECISION));
+  assert.ok(floatEquals(normalized.x, 2 / len, PRECISION));
+  assert.ok(floatEquals(normalized.y, 3 / len, PRECISION));
+  assert.ok(floatEquals(normalized.z, 4 / len, PRECISION));
 });
 
 QUnit.test('Vector dot product', assert => {
@@ -111,33 +112,33 @@ QUnit.test('Vector rotate around an axis', assert => {
   const x = vec3.rotx(a, Math.PI / 2);
   const y = vec3.roty(a, Math.PI / 2);
   const z = vec3.rotz(a, Math.PI / 2);
-  assert.ok(utils.floatEquals(x.x, 1, PRECISION));
-  assert.ok(utils.floatEquals(x.y, -3, PRECISION));
-  assert.ok(utils.floatEquals(x.z, 2, PRECISION));
-  assert.ok(utils.floatEquals(y.x, 3, PRECISION));
-  assert.ok(utils.floatEquals(y.y, 2, PRECISION));
-  assert.ok(utils.floatEquals(y.z, -1, PRECISION));
-  assert.ok(utils.floatEquals(z.x, -2, PRECISION));
-  assert.ok(utils.floatEquals(z.y, 1, PRECISION));
-  assert.ok(utils.floatEquals(z.z, 3, PRECISION));
+  assert.ok(floatEquals(x.x, 1, PRECISION));
+  assert.ok(floatEquals(x.y, -3, PRECISION));
+  assert.ok(floatEquals(x.z, 2, PRECISION));
+  assert.ok(floatEquals(y.x, 3, PRECISION));
+  assert.ok(floatEquals(y.y, 2, PRECISION));
+  assert.ok(floatEquals(y.z, -1, PRECISION));
+  assert.ok(floatEquals(z.x, -2, PRECISION));
+  assert.ok(floatEquals(z.y, 1, PRECISION));
+  assert.ok(floatEquals(z.z, 3, PRECISION));
 });
 
 QUnit.test('Vector rotate using a quaternion', assert => {
   const a = vec3(1, 2, 3);
   const q = [0, 0, 1, 1];
   const rotated = vec3.rotq(a, q);
-  assert.ok(utils.floatEquals(rotated.x, -2, PRECISION));
-  assert.ok(utils.floatEquals(rotated.y, 1, PRECISION));
-  assert.ok(utils.floatEquals(rotated.z, 3, PRECISION));
+  assert.ok(floatEquals(rotated.x, -2, PRECISION));
+  assert.ok(floatEquals(rotated.y, 1, PRECISION));
+  assert.ok(floatEquals(rotated.z, 3, PRECISION));
 });
 
 QUnit.test('Vector rotate using Euler angles', assert => {
   const a = vec3(1, 2, 3);
   const e = vec3(0, 0, Math.PI / 2);
   const rotated = vec3.rota(a, e);
-  assert.ok(utils.floatEquals(rotated.x, -2, PRECISION));
-  assert.ok(utils.floatEquals(rotated.y, 1, PRECISION));
-  assert.ok(utils.floatEquals(rotated.z, 3, PRECISION));
+  assert.ok(floatEquals(rotated.x, -2, PRECISION));
+  assert.ok(floatEquals(rotated.y, 1, PRECISION));
+  assert.ok(floatEquals(rotated.z, 3, PRECISION));
 });
 
 QUnit.test('Vector equality', assert => {
@@ -186,14 +187,14 @@ QUnit.test('Swizzling a vector', assert => {
 QUnit.test('Vector to polar coordinates', assert => {
   const a = vec3(1, 1, 1);
   const polar = vec3.polar(a);
-  assert.ok(utils.floatEquals(polar.r, Math.sqrt(3), PRECISION));
-  assert.ok(utils.floatEquals(polar.theta, Math.acos(1 / Math.sqrt(3)), PRECISION));
-  assert.ok(utils.floatEquals(polar.phi, Math.PI / 4, PRECISION));
+  assert.ok(floatEquals(polar.r, Math.sqrt(3), PRECISION));
+  assert.ok(floatEquals(polar.theta, Math.acos(1 / Math.sqrt(3)), PRECISION));
+  assert.ok(floatEquals(polar.phi, Math.PI / 4, PRECISION));
 });
 
 QUnit.test('Polar coordinates to vector', assert => {
   const a = vec3.fromPolar(Math.sqrt(3), Math.acos(1 / Math.sqrt(3)), Math.PI / 4);
-  assert.ok(utils.floatEquals(a.x, 1, PRECISION));
-  assert.ok(utils.floatEquals(a.y, 1, PRECISION));
-  assert.ok(utils.floatEquals(a.z, 1, PRECISION));
+  assert.ok(floatEquals(a.x, 1, PRECISION));
+  assert.ok(floatEquals(a.y, 1, PRECISION));
+  assert.ok(floatEquals(a.z, 1, PRECISION));
 });

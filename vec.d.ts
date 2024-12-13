@@ -691,4 +691,4 @@ declare const mat: {
   str(a: mat, ms?: string, ns?: string): string;
 };
 
-export { vec2, mat }
+export { vec2, vec3, mat };

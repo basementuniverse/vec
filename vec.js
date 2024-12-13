@@ -1,9 +1,11 @@
-const { times, chunk, dot } = require('@basementuniverse/utils');
-
 /**
  * @overview A small vector and matrix library
  * @author Gordon Larrigan
  */
+
+const _vec_times = (f, n) => Array(n).fill(0).map((_, i) => f(i));
+const _vec_chunk = (a, n) => _vec_times(i => a.slice(i * n, i * n + n), Math.ceil(a.length / n));
+const _vec_dot = (a, b) => a.reduce((n, v, i) => n + v * b[i], 0);
 
 /**
  * A 2d vector
@@ -671,7 +673,7 @@ mat.row = (a, m) => {
  * @param {number} n The column offset
  * @return {Array<number>} Column n from matrix a
  */
-mat.col = (a, n) => times(i => mat.get(a, (i + 1), n), a.m);
+mat.col = (a, n) => _vec_times(i => mat.get(a, (i + 1), n), a.m);
 
 /**
  * Add matrices
@@ -700,7 +702,7 @@ mat.mul = (a, b) => {
   const result = mat(a.m, b.n);
   for (let i = 1; i <= a.m; i++) {
     for (let j = 1; j <= b.n; j++) {
-      mat.set(result, i, j, dot(mat.row(a, i), mat.col(b, j)));
+      mat.set(result, i, j, _vec_dot(mat.row(a, i), mat.col(b, j)));
     }
   }
   return result;
@@ -719,7 +721,7 @@ mat.scale = (a, b) => mat.map(a, v => v * b);
  * @param {mat} a The matrix to transpose
  * @return {mat} A transposed matrix
  */
-mat.trans = a => mat(a.n, a.m, times(i => mat.col(a, (i + 1)), a.n).flat());
+mat.trans = a => mat(a.n, a.m, _vec_times(i => mat.col(a, (i + 1)), a.n).flat());
 
 /**
  * Get the minor of a matrix
@@ -840,7 +842,7 @@ mat.map = (a, f) => mat(a.m, a.n, a.entries.map(f));
  * @param {string} [ns='\n'] The separator string for rows
  * @return {string} A string representation of the matrix
  */
-mat.str = (a, ms = ', ', ns = '\n') => chunk(a.entries, a.n).map(r => r.join(ms)).join(ns);
+mat.str = (a, ms = ', ', ns = '\n') => _vec_chunk(a.entries, a.n).map(r => r.join(ms)).join(ns);
 
 if (typeof module !== 'undefined') {
   module.exports = { vec2, vec3, mat };
