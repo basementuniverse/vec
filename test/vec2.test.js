@@ -49,16 +49,52 @@ QUnit.test('Vector addition', assert => {
   assert.deepEqual(vec2.add(a, b), { x: 3, y: 4 });
 });
 
+QUnit.test('Vector addition (scalar)', assert => {
+  const a = vec2(1, 2);
+  const b = 2;
+  assert.deepEqual(vec2.add(a, b), { x: 3, y: 4 });
+});
+
 QUnit.test('Vector subtraction', assert => {
   const a = vec2(1, 1);
   const b = vec2(2, 3);
   assert.deepEqual(vec2.sub(a, b), { x: -1, y: -2 });
 });
 
+QUnit.test('Vector subtraction (scalar)', assert => {
+  const a = vec2(1, 2);
+  const b = 2;
+  assert.deepEqual(vec2.sub(a, b), { x: -1, y: 0 });
+});
+
 QUnit.test('Vector multiplication', assert => {
+  const a = vec2(2, 3);
+  const b = vec2(2, 3);
+  assert.deepEqual(vec2.mul(a, b), { x: 4, y: 9 });
+});
+
+QUnit.test('Vector multiplication (scalar)', assert => {
   const a = vec2(2, 3);
   const b = 2;
   assert.deepEqual(vec2.mul(a, b), { x: 4, y: 6 });
+});
+
+QUnit.test('Vector scaling (alias for multiplication, scalar)', assert => {
+  const a = vec2(2, 3);
+  const b = 2;
+  assert.deepEqual(vec2.scale(a, b), { x: 4, y: 6 });
+});
+
+QUnit.test('Vector division', assert => {
+  const a = vec2(2, 3);
+  const b = vec2(2, 3);
+  assert.deepEqual(vec2.div(a, b), { x: 1, y: 1 });
+});
+
+QUnit.test('Vector division (scalar)', assert => {
+  const a = vec2(2, 3);
+  const b = 2;
+  assert.deepEqual(vec2.div(a, b), { x: 1, y: 1.5 });
 });
 
 QUnit.test('Vector length', assert => {

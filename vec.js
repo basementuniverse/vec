@@ -64,26 +64,42 @@ vec2.uy = () => vec2(0, 1);
 /**
  * Add vectors
  * @param {vec2} a Vector a
- * @param {vec2} b Vector b
+ * @param {vec2|number} b Vector or scalar b
  * @return {vec2} a + b
  */
-vec2.add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y });
-
-/**
- * Scale a vector
- * @param {vec2} a Vector a
- * @param {number} b Scalar b
- * @return {vec2} a * b
- */
-vec2.mul = (a, b) => ({ x: a.x * b, y: a.y * b });
+vec2.add = (a, b) => ({ x: a.x + (b.x ?? b), y: a.y + (b.y ?? b) });
 
 /**
  * Subtract vectors
  * @param {vec2} a Vector a
- * @param {vec2} b Vector b
+ * @param {vec2|number} b Vector or scalar b
  * @return {vec2} a - b
  */
-vec2.sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y });
+vec2.sub = (a, b) => ({ x: a.x - (b.x ?? b), y: a.y - (b.y ?? b) });
+
+/**
+ * Scale a vector
+ * @param {vec2} a Vector a
+ * @param {vec2|number} b Vector or scalar b
+ * @return {vec2} a * b
+ */
+vec2.mul = (a, b) => ({ x: a.x * (b.x ?? b), y: a.y * (b.y ?? b) });
+
+/**
+ * Scale a vector by a scalar, alias for vec2.mul
+ * @param {vec2} a Vector a
+ * @param {number} b Scalar b
+ * @return {vec2} a * b
+ */
+vec2.scale = (a, b) => vec2.mul(a, b);
+
+/**
+ * Divide a vector
+ * @param {vec2} a Vector a
+ * @param {vec2|number} b Vector or scalar b
+ * @return {vec2} a / b
+ */
+vec2.div = (a, b) => ({ x: a.x / (b.x ?? b), y: a.y / (b.y ?? b) });
 
 /**
  * Get the length of a vector
@@ -323,26 +339,42 @@ vec3.uz = () => vec3(0, 0, 1);
 /**
  * Add vectors
  * @param {vec3} a Vector a
- * @param {vec3} b Vector b
+ * @param {vec3|number} b Vector or scalar b
  * @return {vec3} a + b
  */
-vec3.add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y, z: a.z + b.z });
-
-/**
- * Scale a vector
- * @param {vec3} a Vector a
- * @param {number} b Scalar b
- * @return {vec3} a * b
- */
-vec3.mul = (a, b) => ({ x: a.x * b, y: a.y * b, z: a.z * b });
+vec3.add = (a, b) => ({ x: a.x + (b.x ?? b), y: a.y + (b.y ?? b), z: a.z + (b.z ?? b) });
 
 /**
  * Subtract vectors
  * @param {vec3} a Vector a
- * @param {vec3} b Vector b
+ * @param {vec3|number} b Vector or scalar b
  * @return {vec3} a - b
  */
-vec3.sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y, z: a.z - b.z });
+vec3.sub = (a, b) => ({ x: a.x - (b.x ?? b), y: a.y - (b.y ?? b), z: a.z - (b.z ?? b) });
+
+/**
+ * Scale a vector
+ * @param {vec3} a Vector a
+ * @param {vec3|number} b Vector or scalar b
+ * @return {vec3} a * b
+ */
+vec3.mul = (a, b) => ({ x: a.x * (b.x ?? b), y: a.y * (b.y ?? b), z: a.z * (b.z ?? b) });
+
+/**
+ * Scale a vector by a scalar, alias for vec3.mul
+ * @param {vec3} a Vector a
+ * @param {number} b Scalar b
+ * @return {vec3} a * b
+ */
+vec3.scale = (a, b) => vec3.mul(a, b);
+
+/**
+ * Divide a vector
+ * @param {vec3} a Vector a
+ * @param {vec3|number} b Vector or scalar b
+ * @return {vec3} a / b
+ */
+vec3.div = (a, b) => ({ x: a.x / (b.x ?? b), y: a.y / (b.y ?? b), z: a.z / (b.z ?? b) });
 
 /**
  * Get the length of a vector

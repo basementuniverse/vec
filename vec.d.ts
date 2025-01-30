@@ -74,26 +74,42 @@ declare const vec2: {
   /**
    * Add vectors
    * @param {vec2} a Vector a
-   * @param {vec2} b Vector b
+   * @param {vec2|number} b Vector or scalar b
    * @return {vec2} a + b
    */
-  add(a: vec2, b: vec2): vec2;
-
-  /**
-   * Scale a vector
-   * @param {vec2} a Vector a
-   * @param {number} b Scalar b
-   * @return {vec2} a * b
-   */
-  mul(a: vec2, b: number): vec2;
+  add(a: vec2, b: vec2 | number): vec2;
 
   /**
    * Subtract vectors
    * @param {vec2} a Vector a
-   * @param {vec2} b Vector b
+   * @param {vec2|number} b Vector or scalar b
    * @return {vec2} a - b
    */
-  sub(a: vec2, b: vec2): vec2;
+  sub(a: vec2, b: vec2 | number): vec2;
+
+  /**
+   * Scale a vector
+   * @param {vec2} a Vector a
+   * @param {vec2|number} b Vector or scalar b
+   * @return {vec2} a * b
+   */
+  mul(a: vec2, b: vec2 | number): vec2;
+
+  /**
+   * Scale a vector by a scalar, alias for mul
+   * @param {vec2} a Vector a
+   * @param {number} b Scalar b
+   * @return {vec2} a * b
+   */
+  scale(a: vec2, b: number): vec2;
+
+  /**
+   * Divide a vector
+   * @param {vec2} a Vector a
+   * @param {vec2|number} b Vector or scalar b
+   * @return {vec2} a / b
+   */
+  div(a: vec2, b: vec2 | number): vec2;
 
   /**
    * Get the length of a vector
@@ -307,26 +323,42 @@ declare const vec3: {
   /**
    * Add vectors
    * @param {vec3} a Vector a
-   * @param {vec3} b Vector b
+   * @param {vec3|number} b Vector or scalar b
    * @return {vec3} a + b
    */
-  add(a: vec3, b: vec3): vec3;
-
-  /**
-   * Scale a vector
-   * @param {vec3} a Vector a
-   * @param {number} b Scalar b
-   * @return {vec3} a * b
-   */
-  mul(a: vec3, b: number): vec3;
+  add(a: vec3, b: vec3 | number): vec3;
 
   /**
    * Subtract vectors
    * @param {vec3} a Vector a
-   * @param {vec3} b Vector b
+   * @param {vec3|number} b Vector or scalar b
    * @return {vec3} a - b
    */
-  sub(a: vec3, b: vec3): vec3;
+  sub(a: vec3, b: vec3 | number): vec3;
+
+  /**
+   * Scale a vector
+   * @param {vec3} a Vector a
+   * @param {vec3|number} b Vector or scalar b
+   * @return {vec3} a * b
+   */
+  mul(a: vec3, b: vec3 | number): vec3;
+
+  /**
+   * Scale a vector by a scalar, alias for mul
+   * @param {vec3} a Vector a
+   * @param {number} b Scalar b
+   * @return {vec3} a * b
+   */
+  scale(a: vec3, b: number): vec3;
+
+  /**
+   * Divide a vector
+   * @param {vec3} a Vector a
+   * @param {vec3|number} b Vector or scalar b
+   * @return {vec3} a / b
+   */
+  div(a: vec3, b: vec3 | number): vec3;
 
   /**
    * Get the length of a vector

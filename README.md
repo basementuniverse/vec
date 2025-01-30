@@ -108,8 +108,10 @@ let d = vec2();     // (0, 0)
     * [.ux()](#vec2.ux) ⇒ [<code>vec2</code>](#vec2)
     * [.uy()](#vec2.uy) ⇒ [<code>vec2</code>](#vec2)
     * [.add(a, b)](#vec2.add) ⇒ [<code>vec2</code>](#vec2)
-    * [.mul(a, b)](#vec2.mul) ⇒ [<code>vec2</code>](#vec2)
     * [.sub(a, b)](#vec2.sub) ⇒ [<code>vec2</code>](#vec2)
+    * [.mul(a, b)](#vec2.mul) ⇒ [<code>vec2</code>](#vec2)
+    * [.scale(a, b)](#vec2.scale) ⇒ [<code>vec2</code>](#vec2)
+    * [.div(a, b)](#vec2.div) ⇒ [<code>vec2</code>](#vec2)
     * [.len(a)](#vec2.len) ⇒ <code>number</code>
     * [.manhattan(a)](#vec2.manhattan) ⇒ <code>number</code>
     * [.nor(a)](#vec2.nor) ⇒ [<code>vec2</code>](#vec2)
@@ -174,20 +176,7 @@ Add vectors
 | Param | Type | Description |
 | --- | --- | --- |
 | a | [<code>vec2</code>](#vec2) | Vector a |
-| b | [<code>vec2</code>](#vec2) | Vector b |
-
-<a name="vec2.mul"></a>
-
-### vec2.mul(a, b) ⇒ [<code>vec2</code>](#vec2)
-Scale a vector
-
-**Kind**: static method of [<code>vec2</code>](#vec2)  
-**Returns**: [<code>vec2</code>](#vec2) - a * b  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| a | [<code>vec2</code>](#vec2) | Vector a |
-| b | <code>number</code> | Scalar b |
+| b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
 
 <a name="vec2.sub"></a>
 
@@ -200,7 +189,46 @@ Subtract vectors
 | Param | Type | Description |
 | --- | --- | --- |
 | a | [<code>vec2</code>](#vec2) | Vector a |
-| b | [<code>vec2</code>](#vec2) | Vector b |
+| b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec2.mul"></a>
+
+### vec2.mul(a, b) ⇒ [<code>vec2</code>](#vec2)
+Scale a vector
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - a * b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec2</code>](#vec2) | Vector a |
+| b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec2.scale"></a>
+
+### vec2.scale(a, b) ⇒ [<code>vec2</code>](#vec2)
+Scale a vector by a scalar, alias for vec2.mul
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - a * b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec2</code>](#vec2) | Vector a |
+| b | <code>number</code> | Scalar b |
+
+<a name="vec2.div"></a>
+
+### vec2.div(a, b) ⇒ [<code>vec2</code>](#vec2)
+Divide a vector
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - a / b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec2</code>](#vec2) | Vector a |
+| b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
 
 <a name="vec2.len"></a>
 
@@ -429,8 +457,10 @@ let g = vec3(vec2(4, 5));    // (4, 5, 0)
     * [.uy()](#vec3.uy) ⇒ [<code>vec3</code>](#vec3)
     * [.uz()](#vec3.uz) ⇒ [<code>vec3</code>](#vec3)
     * [.add(a, b)](#vec3.add) ⇒ [<code>vec3</code>](#vec3)
-    * [.mul(a, b)](#vec3.mul) ⇒ [<code>vec3</code>](#vec3)
     * [.sub(a, b)](#vec3.sub) ⇒ [<code>vec3</code>](#vec3)
+    * [.mul(a, b)](#vec3.mul) ⇒ [<code>vec3</code>](#vec3)
+    * [.scale(a, b)](#vec3.scale) ⇒ [<code>vec3</code>](#vec3)
+    * [.div(a, b)](#vec3.div) ⇒ [<code>vec3</code>](#vec3)
     * [.len(a)](#vec3.len) ⇒ <code>number</code>
     * [.manhattan(a)](#vec3.manhattan) ⇒ <code>number</code>
     * [.nor(a)](#vec3.nor) ⇒ [<code>vec3</code>](#vec3)
@@ -509,20 +539,7 @@ Add vectors
 | Param | Type | Description |
 | --- | --- | --- |
 | a | [<code>vec3</code>](#vec3) | Vector a |
-| b | [<code>vec3</code>](#vec3) | Vector b |
-
-<a name="vec3.mul"></a>
-
-### vec3.mul(a, b) ⇒ [<code>vec3</code>](#vec3)
-Scale a vector
-
-**Kind**: static method of [<code>vec3</code>](#vec3)  
-**Returns**: [<code>vec3</code>](#vec3) - a * b  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| a | [<code>vec3</code>](#vec3) | Vector a |
-| b | <code>number</code> | Scalar b |
+| b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
 
 <a name="vec3.sub"></a>
 
@@ -535,7 +552,46 @@ Subtract vectors
 | Param | Type | Description |
 | --- | --- | --- |
 | a | [<code>vec3</code>](#vec3) | Vector a |
-| b | [<code>vec3</code>](#vec3) | Vector b |
+| b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec3.mul"></a>
+
+### vec3.mul(a, b) ⇒ [<code>vec3</code>](#vec3)
+Scale a vector
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - a * b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec3</code>](#vec3) | Vector a |
+| b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec3.scale"></a>
+
+### vec3.scale(a, b) ⇒ [<code>vec3</code>](#vec3)
+Scale a vector by a scalar, alias for vec3.mul
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - a * b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec3</code>](#vec3) | Vector a |
+| b | <code>number</code> | Scalar b |
+
+<a name="vec3.div"></a>
+
+### vec3.div(a, b) ⇒ [<code>vec3</code>](#vec3)
+Divide a vector
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - a / b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec3</code>](#vec3) | Vector a |
+| b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
 
 <a name="vec3.len"></a>
 
@@ -1123,8 +1179,10 @@ A 2d vector
     * [.ux()](#vec2.ux) ⇒ [<code>vec2</code>](#vec2)
     * [.uy()](#vec2.uy) ⇒ [<code>vec2</code>](#vec2)
     * [.add(a, b)](#vec2.add) ⇒ [<code>vec2</code>](#vec2)
-    * [.mul(a, b)](#vec2.mul) ⇒ [<code>vec2</code>](#vec2)
     * [.sub(a, b)](#vec2.sub) ⇒ [<code>vec2</code>](#vec2)
+    * [.mul(a, b)](#vec2.mul) ⇒ [<code>vec2</code>](#vec2)
+    * [.scale(a, b)](#vec2.scale) ⇒ [<code>vec2</code>](#vec2)
+    * [.div(a, b)](#vec2.div) ⇒ [<code>vec2</code>](#vec2)
     * [.len(a)](#vec2.len) ⇒ <code>number</code>
     * [.manhattan(a)](#vec2.manhattan) ⇒ <code>number</code>
     * [.nor(a)](#vec2.nor) ⇒ [<code>vec2</code>](#vec2)
@@ -1189,20 +1247,7 @@ Add vectors
 | Param | Type | Description |
 | --- | --- | --- |
 | a | [<code>vec2</code>](#vec2) | Vector a |
-| b | [<code>vec2</code>](#vec2) | Vector b |
-
-<a name="vec2.mul"></a>
-
-### vec2.mul(a, b) ⇒ [<code>vec2</code>](#vec2)
-Scale a vector
-
-**Kind**: static method of [<code>vec2</code>](#vec2)  
-**Returns**: [<code>vec2</code>](#vec2) - a * b  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| a | [<code>vec2</code>](#vec2) | Vector a |
-| b | <code>number</code> | Scalar b |
+| b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
 
 <a name="vec2.sub"></a>
 
@@ -1215,7 +1260,46 @@ Subtract vectors
 | Param | Type | Description |
 | --- | --- | --- |
 | a | [<code>vec2</code>](#vec2) | Vector a |
-| b | [<code>vec2</code>](#vec2) | Vector b |
+| b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec2.mul"></a>
+
+### vec2.mul(a, b) ⇒ [<code>vec2</code>](#vec2)
+Scale a vector
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - a * b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec2</code>](#vec2) | Vector a |
+| b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec2.scale"></a>
+
+### vec2.scale(a, b) ⇒ [<code>vec2</code>](#vec2)
+Scale a vector by a scalar, alias for vec2.mul
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - a * b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec2</code>](#vec2) | Vector a |
+| b | <code>number</code> | Scalar b |
+
+<a name="vec2.div"></a>
+
+### vec2.div(a, b) ⇒ [<code>vec2</code>](#vec2)
+Divide a vector
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - a / b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec2</code>](#vec2) | Vector a |
+| b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
 
 <a name="vec2.len"></a>
 
@@ -1460,8 +1544,10 @@ A 3d vector
     * [.uy()](#vec3.uy) ⇒ [<code>vec3</code>](#vec3)
     * [.uz()](#vec3.uz) ⇒ [<code>vec3</code>](#vec3)
     * [.add(a, b)](#vec3.add) ⇒ [<code>vec3</code>](#vec3)
-    * [.mul(a, b)](#vec3.mul) ⇒ [<code>vec3</code>](#vec3)
     * [.sub(a, b)](#vec3.sub) ⇒ [<code>vec3</code>](#vec3)
+    * [.mul(a, b)](#vec3.mul) ⇒ [<code>vec3</code>](#vec3)
+    * [.scale(a, b)](#vec3.scale) ⇒ [<code>vec3</code>](#vec3)
+    * [.div(a, b)](#vec3.div) ⇒ [<code>vec3</code>](#vec3)
     * [.len(a)](#vec3.len) ⇒ <code>number</code>
     * [.manhattan(a)](#vec3.manhattan) ⇒ <code>number</code>
     * [.nor(a)](#vec3.nor) ⇒ [<code>vec3</code>](#vec3)
@@ -1540,20 +1626,7 @@ Add vectors
 | Param | Type | Description |
 | --- | --- | --- |
 | a | [<code>vec3</code>](#vec3) | Vector a |
-| b | [<code>vec3</code>](#vec3) | Vector b |
-
-<a name="vec3.mul"></a>
-
-### vec3.mul(a, b) ⇒ [<code>vec3</code>](#vec3)
-Scale a vector
-
-**Kind**: static method of [<code>vec3</code>](#vec3)  
-**Returns**: [<code>vec3</code>](#vec3) - a * b  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| a | [<code>vec3</code>](#vec3) | Vector a |
-| b | <code>number</code> | Scalar b |
+| b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
 
 <a name="vec3.sub"></a>
 
@@ -1566,7 +1639,46 @@ Subtract vectors
 | Param | Type | Description |
 | --- | --- | --- |
 | a | [<code>vec3</code>](#vec3) | Vector a |
-| b | [<code>vec3</code>](#vec3) | Vector b |
+| b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec3.mul"></a>
+
+### vec3.mul(a, b) ⇒ [<code>vec3</code>](#vec3)
+Scale a vector
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - a * b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec3</code>](#vec3) | Vector a |
+| b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec3.scale"></a>
+
+### vec3.scale(a, b) ⇒ [<code>vec3</code>](#vec3)
+Scale a vector by a scalar, alias for vec3.mul
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - a * b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec3</code>](#vec3) | Vector a |
+| b | <code>number</code> | Scalar b |
+
+<a name="vec3.div"></a>
+
+### vec3.div(a, b) ⇒ [<code>vec3</code>](#vec3)
+Divide a vector
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - a / b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec3</code>](#vec3) | Vector a |
+| b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
 
 <a name="vec3.len"></a>
 
