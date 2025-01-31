@@ -18,7 +18,7 @@ declare type vec2 = {
  * @param {'x' | 'y'} label The component label (x or y)
  * @return {number} The mapped component
  */
-type vec2MapCallback = (i: number) => any;
+type vec2MapCallback = (i: number, label: 'x' | 'y') => number;
 
 /**
  * Polar coordinates for a 2d vector
@@ -255,7 +255,7 @@ declare type vec3 = {
  * @param {'x' | 'y'} label The component label (x, y or z)
  * @return {number} The mapped component
  */
-type vec3MapCallback = (i: number) => any;
+type vec3MapCallback = (i: number, label: 'x' | 'y' | 'z') => number;
 
 /**
  * Polar coordinates for a 3d vector
