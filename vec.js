@@ -161,6 +161,16 @@ vec2.rotf = (a, r) => {
 };
 
 /**
+ * Scalar cross product of two vectors
+ * @param {vec2} a Vector a
+ * @param {vec2} b Vector b
+ * @return {number} a × b
+ */
+vec2.cross = (a, b) => {
+  return a.x * b.y - a.y * b.x;
+};
+
+/**
  * Check if two vectors are equal
  * @param {vec2} a Vector a
  * @param {vec2} b Vector b

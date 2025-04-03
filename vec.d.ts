@@ -157,6 +157,14 @@ declare const vec2: {
   rotf(a: vec2, r: number): vec2;
 
   /**
+   * Scalar cross product of two vectors
+   * @param {vec2} a Vector a
+   * @param {vec2} b Vector b
+   * @return {number} a × b
+   */
+  cross(a: vec2, b: vec2): number;
+
+  /**
    * Check if two vectors are equal
    * @param {vec2} a Vector a
    * @param {vec2} b Vector b

@@ -118,6 +118,7 @@ let d = vec2();     // (0, 0)
     * [.dot(a, b)](#vec2.dot) ⇒ <code>number</code>
     * [.rot(a, r)](#vec2.rot) ⇒ [<code>vec2</code>](#vec2)
     * [.rotf(a, r)](#vec2.rotf) ⇒ [<code>vec2</code>](#vec2)
+    * [.cross(a, b)](#vec2.cross) ⇒ <code>number</code>
     * [.eq(a, b)](#vec2.eq) ⇒ <code>boolean</code>
     * [.rad(a)](#vec2.rad) ⇒ <code>number</code>
     * [.cpy(a)](#vec2.cpy) ⇒ [<code>vec2</code>](#vec2)
@@ -304,6 +305,19 @@ Fast method to rotate a vector by -90, 90 or 180 degrees
 | --- | --- | --- |
 | a | [<code>vec2</code>](#vec2) | The vector to rotate |
 | r | <code>number</code> | 1 for 90 degrees (cw), -1 for -90 degrees (ccw), 2 or -2 for 180 degrees |
+
+<a name="vec2.cross"></a>
+
+### vec2.cross(a, b) ⇒ <code>number</code>
+Scalar cross product of two vectors
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: <code>number</code> - a × b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec2</code>](#vec2) | Vector a |
+| b | [<code>vec2</code>](#vec2) | Vector b |
 
 <a name="vec2.eq"></a>
 
@@ -1189,6 +1203,7 @@ A 2d vector
     * [.dot(a, b)](#vec2.dot) ⇒ <code>number</code>
     * [.rot(a, r)](#vec2.rot) ⇒ [<code>vec2</code>](#vec2)
     * [.rotf(a, r)](#vec2.rotf) ⇒ [<code>vec2</code>](#vec2)
+    * [.cross(a, b)](#vec2.cross) ⇒ <code>number</code>
     * [.eq(a, b)](#vec2.eq) ⇒ <code>boolean</code>
     * [.rad(a)](#vec2.rad) ⇒ <code>number</code>
     * [.cpy(a)](#vec2.cpy) ⇒ [<code>vec2</code>](#vec2)
@@ -1375,6 +1390,19 @@ Fast method to rotate a vector by -90, 90 or 180 degrees
 | --- | --- | --- |
 | a | [<code>vec2</code>](#vec2) | The vector to rotate |
 | r | <code>number</code> | 1 for 90 degrees (cw), -1 for -90 degrees (ccw), 2 or -2 for 180 degrees |
+
+<a name="vec2.cross"></a>
+
+### vec2.cross(a, b) ⇒ <code>number</code>
+Scalar cross product of two vectors
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: <code>number</code> - a × b  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>vec2</code>](#vec2) | Vector a |
+| b | [<code>vec2</code>](#vec2) | Vector b |
 
 <a name="vec2.eq"></a>
 
