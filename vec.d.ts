@@ -646,7 +646,7 @@ declare const mat: {
    * @param {mat} b Matrix b
    * @return {mat|boolean} ab or false if the matrices cannot be multiplied
    */
-  mul(a: mat, b: mat): mat | boolean;
+  mul(a: mat, b: mat): mat | false;
 
   /**
    * Multiply a matrix by a vector
@@ -654,7 +654,7 @@ declare const mat: {
    * @param {vec2|vec3|number[]} b Vector b
    * @return {mat|boolean} ab or false if the matrix and vector cannot be multiplied
    */
-  mulv(a: mat, b: vec2 | vec3 | number[]): mat | boolean;
+  mulv(a: mat, b: vec2 | vec3 | number[]): mat | false;
 
   /**
    * Scale a matrix
