@@ -297,28 +297,26 @@ QUnit.test('Matrix-vector multiplication', assert => {
   const m1 = mat(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
   const v1 = vec3(1, 2, 3);
   assert.deepEqual(mat.mulv(m1, v1), {
-    m: 3,
-    n: 1,
-    entries: [14, 32, 50]
+    x: 14,
+    y: 32,
+    z: 50,
   });
 
   // Multiply with vec2
   const m2 = mat(2, 2, [1, 2, 3, 4]);
   const v2 = vec2(1, 2);
   assert.deepEqual(mat.mulv(m2, v2), {
-    m: 2,
-    n: 1,
-    entries: [5, 11]
+    x: 5,
+    y: 11,
   });
 
   // Multiply with array
   const m3 = mat(2, 3, [1, 2, 3, 4, 5, 6]);
   const v3 = [1, 2, 3];
-  assert.deepEqual(mat.mulv(m3, v3), {
-    m: 2,
-    n: 1,
-    entries: [14, 32]
-  });
+  assert.deepEqual(mat.mulv(m3, v3), [
+    14,
+    32,
+  ]);
 
   // Invalid multiplication (dimension mismatch)
   const m4 = mat(2, 3, [1, 2, 3, 4, 5, 6]);

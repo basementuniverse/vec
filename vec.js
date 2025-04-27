@@ -756,26 +756,29 @@ mat.mul = (a, b) => {
  * Multiply a matrix by a vector
  * @param {mat} a Matrix a
  * @param {vec2|vec3|number[]} b Vector b
- * @return {mat|boolean} ab or false if the matrix and vector cannot be multiplied
+ * @return {vec2|vec3|number[]|boolean} ab or false if the matrix and vector cannot be multiplied
  */
 mat.mulv = (a, b) => {
-  let n, bb;
+  let n, bb, rt;
   if (_vec_is_vec3(b)) {
     bb = vec3.components(b);
     n = 3;
+    rt = vec3.fromComponents;
   } else if (_vec_is_vec2(b)) {
     bb = vec2.components(b);
     n = 2;
+    rt = vec2.fromComponents;
   } else {
     bb = b;
     n = b.length ?? 0;
+    rt = v => v;
   }
   if (a.n !== n) { return false; }
-  const result = mat(a.m, 1);
+  const result = [];
   for (let i = 1; i <= a.m; i++) {
-    mat.set(result, i, 1, _vec_dot(mat.row(a, i), bb));
+    result.push(_vec_dot(mat.row(a, i), bb));
   }
-  return result;
+  return rt(result);
 }
 
 /**

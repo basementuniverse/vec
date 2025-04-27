@@ -652,9 +652,9 @@ declare const mat: {
    * Multiply a matrix by a vector
    * @param {mat} a Matrix a
    * @param {vec2|vec3|number[]} b Vector b
-   * @return {mat|boolean} ab or false if the matrix and vector cannot be multiplied
+   * @return {vec2|vec3|number|boolean} ab or false if the matrix and vector cannot be multiplied
    */
-  mulv(a: mat, b: vec2 | vec3 | number[]): mat | false;
+  mulv<T extends vec2 | vec3 | number[]>(a: mat, b: T): T | false;
 
   /**
    * Scale a matrix
