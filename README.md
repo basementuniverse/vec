@@ -917,6 +917,7 @@ Create a new matrix
     * [.add(a, b)](#mat.add) ⇒ [<code>mat</code>](#mat)
     * [.sub(a, b)](#mat.sub) ⇒ [<code>mat</code>](#mat)
     * [.mul(a, b)](#mat.mul) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+    * [.mulv(a, b)](#mat.mulv) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
     * [.scale(a, b)](#mat.scale) ⇒ [<code>mat</code>](#mat)
     * [.trans(a)](#mat.trans) ⇒ [<code>mat</code>](#mat)
     * [.minor(a, i, j)](#mat.minor) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
@@ -1033,6 +1034,19 @@ Multiply matrices
 | --- | --- | --- |
 | a | [<code>mat</code>](#mat) | Matrix a |
 | b | [<code>mat</code>](#mat) | Matrix b |
+
+<a name="mat.mulv"></a>
+
+### mat.mulv(a, b) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+Multiply a matrix by a vector
+
+**Kind**: static method of [<code>mat</code>](#mat)  
+**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - ab or false if the matrix and vector cannot be multiplied  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>mat</code>](#mat) | Matrix a |
+| b | [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> | Vector b |
 
 <a name="mat.scale"></a>
 
@@ -2045,6 +2059,7 @@ A matrix
     * [.add(a, b)](#mat.add) ⇒ [<code>mat</code>](#mat)
     * [.sub(a, b)](#mat.sub) ⇒ [<code>mat</code>](#mat)
     * [.mul(a, b)](#mat.mul) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+    * [.mulv(a, b)](#mat.mulv) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
     * [.scale(a, b)](#mat.scale) ⇒ [<code>mat</code>](#mat)
     * [.trans(a)](#mat.trans) ⇒ [<code>mat</code>](#mat)
     * [.minor(a, i, j)](#mat.minor) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
@@ -2161,6 +2176,19 @@ Multiply matrices
 | --- | --- | --- |
 | a | [<code>mat</code>](#mat) | Matrix a |
 | b | [<code>mat</code>](#mat) | Matrix b |
+
+<a name="mat.mulv"></a>
+
+### mat.mulv(a, b) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+Multiply a matrix by a vector
+
+**Kind**: static method of [<code>mat</code>](#mat)  
+**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - ab or false if the matrix and vector cannot be multiplied  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| a | [<code>mat</code>](#mat) | Matrix a |
+| b | [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> | Vector b |
 
 <a name="mat.scale"></a>
 

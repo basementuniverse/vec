@@ -1,5 +1,7 @@
 /// <reference types="typescript" />
 
+import { mat } from './vec';
+
 /**
  * A 2d vector
  * @typedef {Object} vec2
@@ -645,6 +647,14 @@ declare const mat: {
    * @return {mat|boolean} ab or false if the matrices cannot be multiplied
    */
   mul(a: mat, b: mat): mat | boolean;
+
+  /**
+   * Multiply a matrix by a vector
+   * @param {mat} a Matrix a
+   * @param {vec2|vec3|number[]} b Vector b
+   * @return {mat|boolean} ab or false if the matrix and vector cannot be multiplied
+   */
+  mulv(a: mat, b: vec2 | vec3 | number[]): mat | boolean;
 
   /**
    * Scale a matrix

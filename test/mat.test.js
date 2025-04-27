@@ -1,4 +1,4 @@
-const { mat } = require('../vec.js');
+const { mat, vec2, vec3 } = require('../vec.js');
 
 const times = (f, n) => Array(n).fill(0).map((_, i) => f(i));
 const range = n => times(i => i, n);
@@ -290,4 +290,38 @@ QUnit.test('Matrix string conversion', assert => {
   assert.equal(mat.str(a), '1, 2\n3, 4');
   assert.equal(mat.str(a, ' '), '1 2\n3 4');
   assert.equal(mat.str(a, '-', '--'), '1-2--3-4');
+});
+
+QUnit.test('Matrix-vector multiplication', assert => {
+  // Multiply with vec3
+  const m1 = mat(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const v1 = vec3(1, 2, 3);
+  assert.deepEqual(mat.mulv(m1, v1), {
+    m: 3,
+    n: 1,
+    entries: [14, 32, 50]
+  });
+
+  // Multiply with vec2
+  const m2 = mat(2, 2, [1, 2, 3, 4]);
+  const v2 = vec2(1, 2);
+  assert.deepEqual(mat.mulv(m2, v2), {
+    m: 2,
+    n: 1,
+    entries: [5, 11]
+  });
+
+  // Multiply with array
+  const m3 = mat(2, 3, [1, 2, 3, 4, 5, 6]);
+  const v3 = [1, 2, 3];
+  assert.deepEqual(mat.mulv(m3, v3), {
+    m: 2,
+    n: 1,
+    entries: [14, 32]
+  });
+
+  // Invalid multiplication (dimension mismatch)
+  const m4 = mat(2, 3, [1, 2, 3, 4, 5, 6]);
+  const v4 = [1, 2];
+  assert.equal(mat.mulv(m4, v4), false);
 });

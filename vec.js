@@ -6,6 +6,8 @@
 const _vec_times = (f, n) => Array(n).fill(0).map((_, i) => f(i));
 const _vec_chunk = (a, n) => _vec_times(i => a.slice(i * n, i * n + n), Math.ceil(a.length / n));
 const _vec_dot = (a, b) => a.reduce((n, v, i) => n + v * b[i], 0);
+const _vec_is_vec2 = a => typeof a === 'object' && 'x' in a && 'y' in a;
+const _vec_is_vec3 = a => typeof a === 'object' && 'x' in a && 'y' in a && 'z' in a;
 
 /**
  * A 2d vector
@@ -29,7 +31,7 @@ const vec2 = (x, y) => {
   if (!x && !y) {
     return { x: 0, y: 0 };
   }
-  if (typeof x === 'object' && 'x' in x && 'y' in x) {
+  if (_vec_is_vec2(x)) {
     return { x: x.x || 0, y: x.y || 0 };
   }
   return { x: x, y: y ?? x };
@@ -305,10 +307,10 @@ const vec3 = (x, y, z) => {
   if (!x && !y && !z) {
     return { x: 0, y: 0, z: 0 };
   }
-  if (typeof x === 'object' && 'x' in x && 'y' in x && 'z' in x) {
+  if (_vec_is_vec3(x)) {
     return { x: x.x || 0, y: x.y || 0, z: x.z || 0 };
   }
-  if (typeof x === 'object' && !('z' in x)) {
+  if (_vec_is_vec2(x)) {
     return { x: x.x || 0, y: x.y || 0, z: y || 0 };
   }
   return { x: x, y: y ?? x, z: z ?? x };
@@ -749,6 +751,32 @@ mat.mul = (a, b) => {
   }
   return result;
 };
+
+/**
+ * Multiply a matrix by a vector
+ * @param {mat} a Matrix a
+ * @param {vec2|vec3|number[]} b Vector b
+ * @return {mat|boolean} ab or false if the matrix and vector cannot be multiplied
+ */
+mat.mulv = (a, b) => {
+  let n, bb;
+  if (_vec_is_vec3(b)) {
+    bb = vec3.components(b);
+    n = 3;
+  } else if (_vec_is_vec2(b)) {
+    bb = vec2.components(b);
+    n = 2;
+  } else {
+    bb = b;
+    n = b.length ?? 0;
+  }
+  if (a.n !== n) { return false; }
+  const result = mat(a.m, 1);
+  for (let i = 1; i <= a.m; i++) {
+    mat.set(result, i, 1, _vec_dot(mat.row(a, i), bb));
+  }
+  return result;
+}
 
 /**
  * Scale a matrix
