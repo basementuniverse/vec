@@ -644,7 +644,7 @@ declare const mat: {
    * Multiply matrices
    * @param {mat} a Matrix a
    * @param {mat} b Matrix b
-   * @return {mat|boolean} ab or false if the matrices cannot be multiplied
+   * @return {mat|false} ab or false if the matrices cannot be multiplied
    */
   mul(a: mat, b: mat): mat | false;
 
@@ -652,7 +652,7 @@ declare const mat: {
    * Multiply a matrix by a vector
    * @param {mat} a Matrix a
    * @param {vec2|vec3|number[]} b Vector b
-   * @return {vec2|vec3|number|boolean} ab or false if the matrix and vector cannot be multiplied
+   * @return {vec2|vec3|number|false} ab or false if the matrix and vector cannot be multiplied
    */
   mulv<T extends vec2 | vec3 | number[]>(a: mat, b: T): T | false;
 
@@ -676,23 +676,23 @@ declare const mat: {
    * @param {mat} a Matrix a
    * @param {number} i The row offset
    * @param {number} j The column offset
-   * @return {mat|boolean} The (i, j) minor of matrix a or false if the matrix is not square
+   * @return {mat|false} The (i, j) minor of matrix a or false if the matrix is not square
    */
-  minor(a: mat, i: number, j: number): mat | boolean;
+  minor(a: mat, i: number, j: number): mat | false;
 
   /**
    * Get the determinant of a matrix
    * @param {mat} a Matrix a
-   * @return {number|boolean} |a| or false if the matrix is not square
+   * @return {number|false} |a| or false if the matrix is not square
    */
-  det(a: mat): number | boolean;
+  det(a: mat): number | false;
 
   /**
    * Normalise a matrix
    * @param {mat} a The matrix to normalise
-   * @return {mat|boolean} ^a or false if the matrix is not square
+   * @return {mat|false} ^a or false if the matrix is not square
    */
-  nor(a: mat): mat | boolean;
+  nor(a: mat): mat | false;
 
   /**
    * Get the adjugate of a matrix
@@ -704,9 +704,9 @@ declare const mat: {
   /**
    * Get the inverse of a matrix
    * @param {mat} a The matrix to invert
-   * @return {mat|boolean} a^-1 or false if the matrix has no inverse
+   * @return {mat|false} a^-1 or false if the matrix has no inverse
    */
-  inv(a: mat): mat | boolean;
+  inv(a: mat): mat | false;
 
   /**
    * Check if two matrices are equal

@@ -739,7 +739,7 @@ mat.sub = (a, b) => a.m === b.m && a.n === b.n && mat.map(a, (v, i) => v - b.ent
  * Multiply matrices
  * @param {mat} a Matrix a
  * @param {mat} b Matrix b
- * @return {mat|boolean} ab or false if the matrices cannot be multiplied
+ * @return {mat|false} ab or false if the matrices cannot be multiplied
  */
 mat.mul = (a, b) => {
   if (a.n !== b.m) { return false; }
@@ -756,7 +756,7 @@ mat.mul = (a, b) => {
  * Multiply a matrix by a vector
  * @param {mat} a Matrix a
  * @param {vec2|vec3|number[]} b Vector b
- * @return {vec2|vec3|number[]|boolean} ab or false if the matrix and vector cannot be multiplied
+ * @return {vec2|vec3|number[]|false} ab or false if the matrix and vector cannot be multiplied
  */
 mat.mulv = (a, b) => {
   let n, bb, rt;
@@ -801,7 +801,7 @@ mat.trans = a => mat(a.n, a.m, _vec_times(i => mat.col(a, (i + 1)), a.n).flat())
  * @param {mat} a Matrix a
  * @param {number} i The row offset
  * @param {number} j The column offset
- * @return {mat|boolean} The (i, j) minor of matrix a or false if the matrix is not square
+ * @return {mat|false} The (i, j) minor of matrix a or false if the matrix is not square
  */
 mat.minor = (a, i, j) => {
   if (a.m !== a.n) { return false; }
@@ -819,7 +819,7 @@ mat.minor = (a, i, j) => {
 /**
  * Get the determinant of a matrix
  * @param {mat} a Matrix a
- * @return {number|boolean} |a| or false if the matrix is not square
+ * @return {number|false} |a| or false if the matrix is not square
  */
 mat.det = a => {
   if (a.m !== a.n) { return false; }
@@ -840,7 +840,7 @@ mat.det = a => {
 /**
  * Normalise a matrix
  * @param {mat} a The matrix to normalise
- * @return {mat|boolean} ^a or false if the matrix is not square
+ * @return {mat|false} ^a or false if the matrix is not square
  */
 mat.nor = a => {
   if (a.m !== a.n) { return false; }
@@ -867,7 +867,7 @@ mat.adj = a => {
 /**
  * Get the inverse of a matrix
  * @param {mat} a The matrix to invert
- * @return {mat|boolean} a^-1 or false if the matrix has no inverse
+ * @return {mat|false} a^-1 or false if the matrix has no inverse
  */
 mat.inv = a => {
   if (a.m !== a.n) { return false; }

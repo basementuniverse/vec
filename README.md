@@ -916,15 +916,15 @@ Create a new matrix
     * [.col(a, n)](#mat.col) ⇒ <code>Array.&lt;number&gt;</code>
     * [.add(a, b)](#mat.add) ⇒ [<code>mat</code>](#mat)
     * [.sub(a, b)](#mat.sub) ⇒ [<code>mat</code>](#mat)
-    * [.mul(a, b)](#mat.mul) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
-    * [.mulv(a, b)](#mat.mulv) ⇒ [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>boolean</code>
+    * [.mul(a, b)](#mat.mul) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
+    * [.mulv(a, b)](#mat.mulv) ⇒ [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>false</code>
     * [.scale(a, b)](#mat.scale) ⇒ [<code>mat</code>](#mat)
     * [.trans(a)](#mat.trans) ⇒ [<code>mat</code>](#mat)
-    * [.minor(a, i, j)](#mat.minor) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
-    * [.det(a)](#mat.det) ⇒ <code>number</code> \| <code>boolean</code>
-    * [.nor(a)](#mat.nor) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+    * [.minor(a, i, j)](#mat.minor) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
+    * [.det(a)](#mat.det) ⇒ <code>number</code> \| <code>false</code>
+    * [.nor(a)](#mat.nor) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
     * [.adj(a)](#mat.adj) ⇒ [<code>mat</code>](#mat)
-    * [.inv(a)](#mat.inv) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+    * [.inv(a)](#mat.inv) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
     * [.eq(a, b)](#mat.eq) ⇒ <code>boolean</code>
     * [.cpy(a)](#mat.cpy) ⇒ [<code>mat</code>](#mat)
     * [.map(a, f)](#mat.map) ⇒ [<code>mat</code>](#mat)
@@ -1024,11 +1024,11 @@ Subtract matrices
 
 <a name="mat.mul"></a>
 
-### mat.mul(a, b) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+### mat.mul(a, b) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
 Multiply matrices
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - ab or false if the matrices cannot be multiplied  
+**Returns**: [<code>mat</code>](#mat) \| <code>false</code> - ab or false if the matrices cannot be multiplied  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1037,11 +1037,11 @@ Multiply matrices
 
 <a name="mat.mulv"></a>
 
-### mat.mulv(a, b) ⇒ [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>boolean</code>
+### mat.mulv(a, b) ⇒ [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>false</code>
 Multiply a matrix by a vector
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>boolean</code> - ab or false if the matrix and vector cannot be multiplied  
+**Returns**: [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>false</code> - ab or false if the matrix and vector cannot be multiplied  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1075,11 +1075,11 @@ Transpose a matrix
 
 <a name="mat.minor"></a>
 
-### mat.minor(a, i, j) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+### mat.minor(a, i, j) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
 Get the minor of a matrix
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - The (i, j) minor of matrix a or false if the matrix is not square  
+**Returns**: [<code>mat</code>](#mat) \| <code>false</code> - The (i, j) minor of matrix a or false if the matrix is not square  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1089,11 +1089,11 @@ Get the minor of a matrix
 
 <a name="mat.det"></a>
 
-### mat.det(a) ⇒ <code>number</code> \| <code>boolean</code>
+### mat.det(a) ⇒ <code>number</code> \| <code>false</code>
 Get the determinant of a matrix
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: <code>number</code> \| <code>boolean</code> - |a| or false if the matrix is not square  
+**Returns**: <code>number</code> \| <code>false</code> - |a| or false if the matrix is not square  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1101,11 +1101,11 @@ Get the determinant of a matrix
 
 <a name="mat.nor"></a>
 
-### mat.nor(a) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+### mat.nor(a) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
 Normalise a matrix
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - ^a or false if the matrix is not square  
+**Returns**: [<code>mat</code>](#mat) \| <code>false</code> - ^a or false if the matrix is not square  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1125,11 +1125,11 @@ Get the adjugate of a matrix
 
 <a name="mat.inv"></a>
 
-### mat.inv(a) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+### mat.inv(a) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
 Get the inverse of a matrix
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - a^-1 or false if the matrix has no inverse  
+**Returns**: [<code>mat</code>](#mat) \| <code>false</code> - a^-1 or false if the matrix has no inverse  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -2058,15 +2058,15 @@ A matrix
     * [.col(a, n)](#mat.col) ⇒ <code>Array.&lt;number&gt;</code>
     * [.add(a, b)](#mat.add) ⇒ [<code>mat</code>](#mat)
     * [.sub(a, b)](#mat.sub) ⇒ [<code>mat</code>](#mat)
-    * [.mul(a, b)](#mat.mul) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
-    * [.mulv(a, b)](#mat.mulv) ⇒ [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>boolean</code>
+    * [.mul(a, b)](#mat.mul) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
+    * [.mulv(a, b)](#mat.mulv) ⇒ [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>false</code>
     * [.scale(a, b)](#mat.scale) ⇒ [<code>mat</code>](#mat)
     * [.trans(a)](#mat.trans) ⇒ [<code>mat</code>](#mat)
-    * [.minor(a, i, j)](#mat.minor) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
-    * [.det(a)](#mat.det) ⇒ <code>number</code> \| <code>boolean</code>
-    * [.nor(a)](#mat.nor) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+    * [.minor(a, i, j)](#mat.minor) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
+    * [.det(a)](#mat.det) ⇒ <code>number</code> \| <code>false</code>
+    * [.nor(a)](#mat.nor) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
     * [.adj(a)](#mat.adj) ⇒ [<code>mat</code>](#mat)
-    * [.inv(a)](#mat.inv) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+    * [.inv(a)](#mat.inv) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
     * [.eq(a, b)](#mat.eq) ⇒ <code>boolean</code>
     * [.cpy(a)](#mat.cpy) ⇒ [<code>mat</code>](#mat)
     * [.map(a, f)](#mat.map) ⇒ [<code>mat</code>](#mat)
@@ -2166,11 +2166,11 @@ Subtract matrices
 
 <a name="mat.mul"></a>
 
-### mat.mul(a, b) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+### mat.mul(a, b) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
 Multiply matrices
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - ab or false if the matrices cannot be multiplied  
+**Returns**: [<code>mat</code>](#mat) \| <code>false</code> - ab or false if the matrices cannot be multiplied  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -2179,11 +2179,11 @@ Multiply matrices
 
 <a name="mat.mulv"></a>
 
-### mat.mulv(a, b) ⇒ [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>boolean</code>
+### mat.mulv(a, b) ⇒ [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>false</code>
 Multiply a matrix by a vector
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>boolean</code> - ab or false if the matrix and vector cannot be multiplied  
+**Returns**: [<code>vec2</code>](#vec2) \| [<code>vec3</code>](#vec3) \| <code>Array.&lt;number&gt;</code> \| <code>false</code> - ab or false if the matrix and vector cannot be multiplied  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -2217,11 +2217,11 @@ Transpose a matrix
 
 <a name="mat.minor"></a>
 
-### mat.minor(a, i, j) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+### mat.minor(a, i, j) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
 Get the minor of a matrix
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - The (i, j) minor of matrix a or false if the matrix is not square  
+**Returns**: [<code>mat</code>](#mat) \| <code>false</code> - The (i, j) minor of matrix a or false if the matrix is not square  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -2231,11 +2231,11 @@ Get the minor of a matrix
 
 <a name="mat.det"></a>
 
-### mat.det(a) ⇒ <code>number</code> \| <code>boolean</code>
+### mat.det(a) ⇒ <code>number</code> \| <code>false</code>
 Get the determinant of a matrix
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: <code>number</code> \| <code>boolean</code> - |a| or false if the matrix is not square  
+**Returns**: <code>number</code> \| <code>false</code> - |a| or false if the matrix is not square  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -2243,11 +2243,11 @@ Get the determinant of a matrix
 
 <a name="mat.nor"></a>
 
-### mat.nor(a) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+### mat.nor(a) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
 Normalise a matrix
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - ^a or false if the matrix is not square  
+**Returns**: [<code>mat</code>](#mat) \| <code>false</code> - ^a or false if the matrix is not square  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -2267,11 +2267,11 @@ Get the adjugate of a matrix
 
 <a name="mat.inv"></a>
 
-### mat.inv(a) ⇒ [<code>mat</code>](#mat) \| <code>boolean</code>
+### mat.inv(a) ⇒ [<code>mat</code>](#mat) \| <code>false</code>
 Get the inverse of a matrix
 
 **Kind**: static method of [<code>mat</code>](#mat)  
-**Returns**: [<code>mat</code>](#mat) \| <code>boolean</code> - a^-1 or false if the matrix has no inverse  
+**Returns**: [<code>mat</code>](#mat) \| <code>false</code> - a^-1 or false if the matrix has no inverse  
 
 | Param | Type | Description |
 | --- | --- | --- |
