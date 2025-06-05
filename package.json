@@ -1,6 +1,6 @@
 {
   "name": "@basementuniverse/vec",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "A small vector and matrix library",
   "main": "vec.js",
   "types": "vec.d.ts",
