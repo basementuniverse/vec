@@ -1,7 +1,5 @@
 /// <reference types="typescript" />
 
-import { mat } from './vec';
-
 /**
  * A 2d vector
  * @typedef {Object} vec2
