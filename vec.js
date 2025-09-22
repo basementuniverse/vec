@@ -72,12 +72,26 @@ vec2.uy = () => vec2(0, 1);
 vec2.add = (a, b) => ({ x: a.x + (b.x ?? b), y: a.y + (b.y ?? b) });
 
 /**
+ * Add multiple vectors
+ * @param  {...any} v Vectors to add
+ * @returns {vec2} The sum of the vectors
+ */
+vec2.addm = (...v) => v.reduce((a, b) => vec2.add(a, b), vec2());
+
+/**
  * Subtract vectors
  * @param {vec2} a Vector a
  * @param {vec2|number} b Vector or scalar b
  * @return {vec2} a - b
  */
 vec2.sub = (a, b) => ({ x: a.x - (b.x ?? b), y: a.y - (b.y ?? b) });
+
+/**
+ * Subtract multiple vectors
+ * @param  {...any} v Vectors to subtract
+ * @returns {vec2} The result of subtracting the vectors
+ */
+vec2.subm = (...v) => v.reduce((a, b) => vec2.sub(a, b));
 
 /**
  * Scale a vector
@@ -357,12 +371,26 @@ vec3.uz = () => vec3(0, 0, 1);
 vec3.add = (a, b) => ({ x: a.x + (b.x ?? b), y: a.y + (b.y ?? b), z: a.z + (b.z ?? b) });
 
 /**
+ * Add multiple vectors
+ * @param  {...any} v Vectors to add
+ * @returns {vec3} The sum of the vectors
+ */
+vec3.addm = (...v) => v.reduce((a, b) => vec3.add(a, b), vec3());
+
+/**
  * Subtract vectors
  * @param {vec3} a Vector a
  * @param {vec3|number} b Vector or scalar b
  * @return {vec3} a - b
  */
 vec3.sub = (a, b) => ({ x: a.x - (b.x ?? b), y: a.y - (b.y ?? b), z: a.z - (b.z ?? b) });
+
+/**
+ * Subtract multiple vectors
+ * @param  {...any} v Vectors to subtract
+ * @returns {vec3} The result of subtracting the vectors
+ */
+vec3.subm = (...v) => v.reduce((a, b) => vec3.sub(a, b));
 
 /**
  * Scale a vector

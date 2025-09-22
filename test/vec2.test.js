@@ -55,6 +55,13 @@ QUnit.test('Vector addition (scalar)', assert => {
   assert.deepEqual(vec2.add(a, b), { x: 3, y: 4 });
 });
 
+QUnit.test('Vector addition (multiple)', assert => {
+  const a = vec2(1, 1);
+  const b = vec2(2, 3);
+  const c = vec2(4, 5);
+  assert.deepEqual(vec2.addm(a, b, c), { x: 7, y: 9 });
+});
+
 QUnit.test('Vector subtraction', assert => {
   const a = vec2(1, 1);
   const b = vec2(2, 3);
@@ -65,6 +72,13 @@ QUnit.test('Vector subtraction (scalar)', assert => {
   const a = vec2(1, 2);
   const b = 2;
   assert.deepEqual(vec2.sub(a, b), { x: -1, y: 0 });
+});
+
+QUnit.test('Vector subtraction (multiple)', assert => {
+  const a = vec2(10, 10);
+  const b = vec2(2, 3);
+  const c = vec2(4, 5);
+  assert.deepEqual(vec2.subm(a, b, c), { x: 4, y: 2 });
 });
 
 QUnit.test('Vector multiplication', assert => {

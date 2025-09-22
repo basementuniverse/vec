@@ -80,12 +80,26 @@ declare const vec2: {
   add(a: vec2, b: vec2 | number): vec2;
 
   /**
+   * Add multiple vectors
+   * @param  {...any} v Vectors to add
+   * @returns {vec2} The sum of the vectors
+   */
+  addm(...v: vec2[]): vec2;
+
+  /**
    * Subtract vectors
    * @param {vec2} a Vector a
    * @param {vec2|number} b Vector or scalar b
    * @return {vec2} a - b
    */
   sub(a: vec2, b: vec2 | number): vec2;
+
+  /**
+   * Subtract multiple vectors
+   * @param  {...any} v Vectors to subtract
+   * @returns {vec2} The result of subtracting the vectors
+   */
+  subm(...v: vec2[]): vec2;
 
   /**
    * Scale a vector
@@ -337,12 +351,26 @@ declare const vec3: {
   add(a: vec3, b: vec3 | number): vec3;
 
   /**
+   * Add multiple vectors
+   * @param  {...any} v Vectors to add
+   * @returns {vec3} The sum of the vectors
+   */
+  addm(...v: vec3[]): vec3;
+
+  /**
    * Subtract vectors
    * @param {vec3} a Vector a
    * @param {vec3|number} b Vector or scalar b
    * @return {vec3} a - b
    */
   sub(a: vec3, b: vec3 | number): vec3;
+
+  /**
+   * Subtract multiple vectors
+   * @param  {...any} v Vectors to subtract
+   * @returns {vec3} The result of subtracting the vectors
+   */
+  subm(...v: vec3[]): vec3;
 
   /**
    * Scale a vector

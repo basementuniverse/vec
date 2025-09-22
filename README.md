@@ -108,7 +108,9 @@ let d = vec2();     // (0, 0)
     * [.ux()](#vec2.ux) ⇒ [<code>vec2</code>](#vec2)
     * [.uy()](#vec2.uy) ⇒ [<code>vec2</code>](#vec2)
     * [.add(a, b)](#vec2.add) ⇒ [<code>vec2</code>](#vec2)
+    * [.addm(...v)](#vec2.addm) ⇒ [<code>vec2</code>](#vec2)
     * [.sub(a, b)](#vec2.sub) ⇒ [<code>vec2</code>](#vec2)
+    * [.subm(...v)](#vec2.subm) ⇒ [<code>vec2</code>](#vec2)
     * [.mul(a, b)](#vec2.mul) ⇒ [<code>vec2</code>](#vec2)
     * [.scale(a, b)](#vec2.scale) ⇒ [<code>vec2</code>](#vec2)
     * [.div(a, b)](#vec2.div) ⇒ [<code>vec2</code>](#vec2)
@@ -179,6 +181,18 @@ Add vectors
 | a | [<code>vec2</code>](#vec2) | Vector a |
 | b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
 
+<a name="vec2.addm"></a>
+
+### vec2.addm(...v) ⇒ [<code>vec2</code>](#vec2)
+Add multiple vectors
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - The sum of the vectors  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...v | <code>any</code> | Vectors to add |
+
 <a name="vec2.sub"></a>
 
 ### vec2.sub(a, b) ⇒ [<code>vec2</code>](#vec2)
@@ -191,6 +205,18 @@ Subtract vectors
 | --- | --- | --- |
 | a | [<code>vec2</code>](#vec2) | Vector a |
 | b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec2.subm"></a>
+
+### vec2.subm(...v) ⇒ [<code>vec2</code>](#vec2)
+Subtract multiple vectors
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - The result of subtracting the vectors  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...v | <code>any</code> | Vectors to subtract |
 
 <a name="vec2.mul"></a>
 
@@ -471,7 +497,9 @@ let g = vec3(vec2(4, 5));    // (4, 5, 0)
     * [.uy()](#vec3.uy) ⇒ [<code>vec3</code>](#vec3)
     * [.uz()](#vec3.uz) ⇒ [<code>vec3</code>](#vec3)
     * [.add(a, b)](#vec3.add) ⇒ [<code>vec3</code>](#vec3)
+    * [.addm(...v)](#vec3.addm) ⇒ [<code>vec3</code>](#vec3)
     * [.sub(a, b)](#vec3.sub) ⇒ [<code>vec3</code>](#vec3)
+    * [.subm(...v)](#vec3.subm) ⇒ [<code>vec3</code>](#vec3)
     * [.mul(a, b)](#vec3.mul) ⇒ [<code>vec3</code>](#vec3)
     * [.scale(a, b)](#vec3.scale) ⇒ [<code>vec3</code>](#vec3)
     * [.div(a, b)](#vec3.div) ⇒ [<code>vec3</code>](#vec3)
@@ -555,6 +583,18 @@ Add vectors
 | a | [<code>vec3</code>](#vec3) | Vector a |
 | b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
 
+<a name="vec3.addm"></a>
+
+### vec3.addm(...v) ⇒ [<code>vec3</code>](#vec3)
+Add multiple vectors
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - The sum of the vectors  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...v | <code>any</code> | Vectors to add |
+
 <a name="vec3.sub"></a>
 
 ### vec3.sub(a, b) ⇒ [<code>vec3</code>](#vec3)
@@ -567,6 +607,18 @@ Subtract vectors
 | --- | --- | --- |
 | a | [<code>vec3</code>](#vec3) | Vector a |
 | b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec3.subm"></a>
+
+### vec3.subm(...v) ⇒ [<code>vec3</code>](#vec3)
+Subtract multiple vectors
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - The result of subtracting the vectors  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...v | <code>any</code> | Vectors to subtract |
 
 <a name="vec3.mul"></a>
 
@@ -1207,7 +1259,9 @@ A 2d vector
     * [.ux()](#vec2.ux) ⇒ [<code>vec2</code>](#vec2)
     * [.uy()](#vec2.uy) ⇒ [<code>vec2</code>](#vec2)
     * [.add(a, b)](#vec2.add) ⇒ [<code>vec2</code>](#vec2)
+    * [.addm(...v)](#vec2.addm) ⇒ [<code>vec2</code>](#vec2)
     * [.sub(a, b)](#vec2.sub) ⇒ [<code>vec2</code>](#vec2)
+    * [.subm(...v)](#vec2.subm) ⇒ [<code>vec2</code>](#vec2)
     * [.mul(a, b)](#vec2.mul) ⇒ [<code>vec2</code>](#vec2)
     * [.scale(a, b)](#vec2.scale) ⇒ [<code>vec2</code>](#vec2)
     * [.div(a, b)](#vec2.div) ⇒ [<code>vec2</code>](#vec2)
@@ -1278,6 +1332,18 @@ Add vectors
 | a | [<code>vec2</code>](#vec2) | Vector a |
 | b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
 
+<a name="vec2.addm"></a>
+
+### vec2.addm(...v) ⇒ [<code>vec2</code>](#vec2)
+Add multiple vectors
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - The sum of the vectors  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...v | <code>any</code> | Vectors to add |
+
 <a name="vec2.sub"></a>
 
 ### vec2.sub(a, b) ⇒ [<code>vec2</code>](#vec2)
@@ -1290,6 +1356,18 @@ Subtract vectors
 | --- | --- | --- |
 | a | [<code>vec2</code>](#vec2) | Vector a |
 | b | [<code>vec2</code>](#vec2) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec2.subm"></a>
+
+### vec2.subm(...v) ⇒ [<code>vec2</code>](#vec2)
+Subtract multiple vectors
+
+**Kind**: static method of [<code>vec2</code>](#vec2)  
+**Returns**: [<code>vec2</code>](#vec2) - The result of subtracting the vectors  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...v | <code>any</code> | Vectors to subtract |
 
 <a name="vec2.mul"></a>
 
@@ -1586,7 +1664,9 @@ A 3d vector
     * [.uy()](#vec3.uy) ⇒ [<code>vec3</code>](#vec3)
     * [.uz()](#vec3.uz) ⇒ [<code>vec3</code>](#vec3)
     * [.add(a, b)](#vec3.add) ⇒ [<code>vec3</code>](#vec3)
+    * [.addm(...v)](#vec3.addm) ⇒ [<code>vec3</code>](#vec3)
     * [.sub(a, b)](#vec3.sub) ⇒ [<code>vec3</code>](#vec3)
+    * [.subm(...v)](#vec3.subm) ⇒ [<code>vec3</code>](#vec3)
     * [.mul(a, b)](#vec3.mul) ⇒ [<code>vec3</code>](#vec3)
     * [.scale(a, b)](#vec3.scale) ⇒ [<code>vec3</code>](#vec3)
     * [.div(a, b)](#vec3.div) ⇒ [<code>vec3</code>](#vec3)
@@ -1670,6 +1750,18 @@ Add vectors
 | a | [<code>vec3</code>](#vec3) | Vector a |
 | b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
 
+<a name="vec3.addm"></a>
+
+### vec3.addm(...v) ⇒ [<code>vec3</code>](#vec3)
+Add multiple vectors
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - The sum of the vectors  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...v | <code>any</code> | Vectors to add |
+
 <a name="vec3.sub"></a>
 
 ### vec3.sub(a, b) ⇒ [<code>vec3</code>](#vec3)
@@ -1682,6 +1774,18 @@ Subtract vectors
 | --- | --- | --- |
 | a | [<code>vec3</code>](#vec3) | Vector a |
 | b | [<code>vec3</code>](#vec3) \| <code>number</code> | Vector or scalar b |
+
+<a name="vec3.subm"></a>
+
+### vec3.subm(...v) ⇒ [<code>vec3</code>](#vec3)
+Subtract multiple vectors
+
+**Kind**: static method of [<code>vec3</code>](#vec3)  
+**Returns**: [<code>vec3</code>](#vec3) - The result of subtracting the vectors  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...v | <code>any</code> | Vectors to subtract |
 
 <a name="vec3.mul"></a>
 
