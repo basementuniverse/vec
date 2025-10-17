@@ -1,24 +1,30 @@
 # @basementuniverse/vec library
 
-This readme provides an overview of the `@basementuniverse/vec` library specifically for AI agents. When prompting an AI, include this file as context to ensure optimal usage of the library.
-
 ## Overview
 
-A comprehensive vector and matrix library providing:
+A vector and matrix library.
 
-1. **2D Vectors (vec2)** - For 2D geometry, graphics, physics
-2. **3D Vectors (vec3)** - For 3D geometry, graphics, physics
-3. **Matrices (mat)** - For transformations, solving systems of equations
+All operations are immutable. Functions return new instances rather than modifying inputs.
 
-Key features:
-- All operations are immutable (return new instances)
-- Extensive vector operations (add, multiply, dot product, cross product, etc.)
-- Complete matrix operations (multiply, transpose, inverse, determinant, etc.)
-- Support for vector swizzling (like GLSL)
-- Polar coordinate conversions
-- Rotation utilities (Euler angles, quaternions, rotation matrices)
+## Installation
 
-Example:
+```bash
+npm install @basementuniverse/vec
+```
+
+```ts
+import {
+  vec2,
+  vec3,
+  mat,
+  isVec2,
+  isVec3,
+  isMat,
+} from '@basementuniverse/vec';
+```
+
+## Example
+
 ```ts
 const a = vec2(1, 2);
 const b = vec2(3, 4);

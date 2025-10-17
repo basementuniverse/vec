@@ -41,11 +41,20 @@ import { vec2, vec3, mat } from '@basementuniverse/vec';
 ## Functions
 
 <dl>
+<dt><a href="#isVec2">isVec2(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Check if a value is a 2d vector</p>
+</dd>
 <dt><a href="#vec2">vec2([x], [y])</a> ⇒ <code><a href="#vec2">vec2</a></code></dt>
 <dd><p>Create a new 2d vector</p>
 </dd>
+<dt><a href="#isVec3">isVec3(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Check if a value is a 3d vector</p>
+</dd>
 <dt><a href="#vec3">vec3([x], [y], [z])</a> ⇒ <code><a href="#vec3">vec3</a></code></dt>
 <dd><p>Create a new 3d vector</p>
+</dd>
+<dt><a href="#isMat">isMat(value)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Check if a value is a matrix</p>
 </dd>
 <dt><a href="#mat">mat([m], [n], [entries])</a> ⇒ <code><a href="#mat">mat</a></code></dt>
 <dd><p>Create a new matrix</p>
@@ -80,6 +89,18 @@ import { vec2, vec3, mat } from '@basementuniverse/vec';
 <dd><p>A function to call on each entry of a matrix</p>
 </dd>
 </dl>
+
+<a name="isVec2"></a>
+
+## isVec2(value) ⇒ <code>boolean</code>
+Check if a value is a 2d vector
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True if value is a 2d vector, false otherwise  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>\*</code> | The value to check |
 
 <a name="vec2"></a>
 
@@ -464,6 +485,18 @@ Convert polar coordinates into a vector
 | --- | --- | --- |
 | r | <code>number</code> | The magnitude (radius) of the vector |
 | theta | <code>number</code> | The angle of the vector |
+
+<a name="isVec3"></a>
+
+## isVec3(value) ⇒ <code>boolean</code>
+Check if a value is a 3d vector
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True if value is a 3d vector, false otherwise  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>\*</code> | The value to check |
 
 <a name="vec3"></a>
 
@@ -944,6 +977,18 @@ Convert polar coordinates into a vector
 | r | <code>number</code> | The magnitude (radius) of the vector |
 | theta | <code>number</code> | The tilt of the vector |
 | phi | <code>number</code> | The pan of the vector |
+
+<a name="isMat"></a>
+
+## isMat(value) ⇒ <code>boolean</code>
+Check if a value is a matrix
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True if value is a matrix, false otherwise  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>\*</code> | The value to check |
 
 <a name="mat"></a>
 

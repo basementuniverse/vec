@@ -17,6 +17,23 @@ const _vec_is_vec3 = a => typeof a === 'object' && 'x' in a && 'y' in a && 'z' i
  */
 
 /**
+ * Check if a value is a 2d vector
+ * @param {*} value The value to check
+ * @returns {boolean} True if value is a 2d vector, false otherwise
+ */
+function isVec2(value) {
+  return (
+    value &&
+    typeof value === 'object' &&
+    'x' in value &&
+    typeof value.x === 'number' &&
+    'y' in value &&
+    typeof value.y === 'number' &&
+    !('z' in value)
+  );
+}
+
+/**
  * Create a new 2d vector
  * @param {number|vec2} [x] The x component of the vector, or a vector to copy
  * @param {number} [y] The y component of the vector
@@ -301,6 +318,24 @@ vec2.fromPolar = (r, theta) => vec2(r * Math.cos(theta), r * Math.sin(theta));
  * @property {number} y The y component of the vector
  * @property {number} z The z component of the vector
  */
+
+/**
+ * Check if a value is a 3d vector
+ * @param {*} value The value to check
+ * @returns {boolean} True if value is a 3d vector, false otherwise
+ */
+function isVec3(value) {
+  return (
+    value &&
+    typeof value === 'object' &&
+    'x' in value &&
+    typeof value.x === 'number' &&
+    'y' in value &&
+    typeof value.y === 'number' &&
+    'z' in value &&
+    typeof value.z === 'number'
+  );
+}
 
 /**
  * Create a new 3d vector
@@ -692,6 +727,24 @@ vec3.fromPolar = (r, theta, phi) => {
  */
 
 /**
+ * Check if a value is a matrix
+ * @param {*} value The value to check
+ * @returns {boolean} True if value is a matrix, false otherwise
+ */
+function isMat(value) {
+  return (
+    value &&
+    typeof value === 'object' &&
+    'm' in value &&
+    typeof value.m === 'number' &&
+    'n' in value &&
+    typeof value.n === 'number' &&
+    'entries' in value &&
+    Array.isArray(value.entries)
+  );
+}
+
+/**
  * Create a new matrix
  * @param {number} [m=4] The number of rows
  * @param {number} [n=4] The number of columns
@@ -946,5 +999,5 @@ mat.map = (a, f) => mat(a.m, a.n, a.entries.map(f));
 mat.str = (a, ms = ', ', ns = '\n') => _vec_chunk(a.entries, a.n).map(r => r.join(ms)).join(ns);
 
 if (typeof module !== 'undefined') {
-  module.exports = { vec2, vec3, mat };
+  module.exports = { vec2, vec3, mat, isVec2, isVec3, isMat };
 }
