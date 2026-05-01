@@ -11,7 +11,7 @@ declare type vec2 = {
   y: number;
 };
 
-export declare function isVec2(v: any): v is vec2;
+declare function isVec2(v: any): v is vec2;
 
 /**
  * A function to call on each component of a 2d vector
@@ -272,7 +272,7 @@ declare type vec3 = {
   z: number;
 };
 
-export declare function isVec3(v: any): v is vec3;
+declare function isVec3(v: any): v is vec3;
 
 /**
  * A function to call on each component of a 3d vector
@@ -593,7 +593,7 @@ declare type mat = {
   entries: Array<number>;
 };
 
-export declare function isMat(v: any): v is mat;
+declare function isMat(v: any): v is mat;
 
 /**
  * A function to call on each entry of a matrix
