@@ -1,0 +1,14 @@
+name: Deploy agent skills to catalogue
+
+on:
+  push:
+    tags:
+      - '*-skills'
+
+jobs:
+  deploy:
+    uses: basementuniverse/agent-skills/.github/workflows/agent-skills-catalogue.yml@main
+    with:
+      scope: basementuniverse-vec
+    secrets:
+      AGENT_SKILLS_TOKEN: ${{ secrets.AGENT_SKILLS_TOKEN }}
