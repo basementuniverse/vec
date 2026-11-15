@@ -6,6 +6,15 @@ const floatEquals = (a, b, p = Number.EPSILON) => Math.abs(a - b) < p;
 
 const PRECISION = 0.001;
 
+const assertMatrixClose = (assert, actual, expected, message) => {
+  assert.equal(actual.m, expected.m, `${message} (rows)`);
+  assert.equal(actual.n, expected.n, `${message} (columns)`);
+  assert.ok(
+    actual.entries.every((v, i) => floatEquals(v, expected.entries[i], PRECISION)),
+    `${message}\nexpected:\n${mat.str(expected)}\nactual:\n${mat.str(actual)}`
+  );
+};
+
 QUnit.module('Matrix tests');
 
 QUnit.test('Initialise a matrix', assert => {
@@ -237,6 +246,44 @@ QUnit.test('Matrix adjugate', assert => {
   });
 });
 
+QUnit.test('Matrix adjugate and inverse (1x1)', assert => {
+  assert.deepEqual(mat.adj(mat(1, 1, [5])), { m: 1, n: 1, entries: [1] });
+  assert.deepEqual(mat.adj(mat(1, 1, [0])), { m: 1, n: 1, entries: [1] });
+  assertMatrixClose(assert, mat.inv(mat(1, 1, [5])), mat(1, 1, [0.2]), '1x1 inverse');
+  assertMatrixClose(assert, mat.inv(mat(1, 1, [-4])), mat(1, 1, [-0.25]), '1x1 negative inverse');
+  assert.equal(mat.inv(mat(1, 1, [0])), false);
+});
+
+QUnit.test('Matrix adjugate (even sizes)', assert => {
+  // 2x2: adj([a, b; c, d]) = [d, -b; -c, a]
+  const a = mat(2, 2, [1, 2, 3, 4]);
+  assert.deepEqual(mat.adj(a), {
+    m: 2,
+    n: 2,
+    entries: [4, -2, -3, 1]
+  });
+
+  // 4x4 block lower-triangular matrix [D, 0; r, 1] with D = diag(2, 3, 4)
+  // and r = [1, 2, 3]. Its inverse is [D^-1, 0; -r D^-1, 1] and det = 24,
+  // so adj = 24 * inverse
+  const b = mat(4, 4, [
+    2, 0, 0, 0,
+    0, 3, 0, 0,
+    0, 0, 4, 0,
+    1, 2, 3, 1
+  ]);
+  assert.deepEqual(mat.adj(b), {
+    m: 4,
+    n: 4,
+    entries: [
+      12, 0, 0, 0,
+      0, 8, 0, 0,
+      0, 0, 6, 0,
+      -12, -16, -18, 24
+    ]
+  });
+});
+
 QUnit.test('Matrix inverse', assert => {
   const a = mat(3, 3, [3, 0, 2, 2, 0, -2, 0, 1, 1]);
   const aInverse = mat.inv(a);
@@ -254,6 +301,89 @@ QUnit.test('Matrix inverse', assert => {
   // Invert a singular/degenerate matrix
   const c = mat(2, 2, [3, 4, 6, 8]);
   assert.equal(mat.inv(c), false);
+});
+
+QUnit.test('Matrix inverse (even sizes)', assert => {
+  // 2x2
+  const a = mat(2, 2, [1, 2, 3, 4]);
+  assertMatrixClose(assert, mat.inv(a), mat(2, 2, [-2, 1, 1.5, -0.5]), '2x2 inverse');
+
+  // 4x4 translation by (5, -3, 2), inverse translates by (-5, 3, -2)
+  const t = mat(4, 4, [
+    1, 0, 0, 5,
+    0, 1, 0, -3,
+    0, 0, 1, 2,
+    0, 0, 0, 1
+  ]);
+  assertMatrixClose(assert, mat.inv(t), mat(4, 4, [
+    1, 0, 0, -5,
+    0, 1, 0, 3,
+    0, 0, 1, -2,
+    0, 0, 0, 1
+  ]), '4x4 translation inverse');
+
+  // 4x4 rigid transform [R | t] with R a 90 degree rotation about z and
+  // t = (1, 2, 3); inverse is [R^T | -R^T t] = [R^T | (-2, 1, -3)]
+  const r90 = mat(4, 4, [
+    0, -1, 0, 1,
+    1, 0, 0, 2,
+    0, 0, 1, 3,
+    0, 0, 0, 1
+  ]);
+  assertMatrixClose(assert, mat.inv(r90), mat(4, 4, [
+    0, 1, 0, -2,
+    -1, 0, 0, 1,
+    0, 0, 1, -3,
+    0, 0, 0, 1
+  ]), '4x4 rigid transform (90 degree z rotation) inverse');
+
+  // 4x4 rigid transform with a general rotation (Rx(0.3) * Rz(0.7)) and
+  // translation; compare against [R^T | -R^T t]
+  const cx = Math.cos(0.3), sx = Math.sin(0.3);
+  const cz = Math.cos(0.7), sz = Math.sin(0.7);
+  const R = mat.mul(
+    mat(3, 3, [1, 0, 0, 0, cx, -sx, 0, sx, cx]),
+    mat(3, 3, [cz, -sz, 0, sz, cz, 0, 0, 0, 1])
+  );
+  const tv = [4, -1, 2.5];
+  const rigid = mat(4, 4, [
+    ...mat.row(R, 1), tv[0],
+    ...mat.row(R, 2), tv[1],
+    ...mat.row(R, 3), tv[2],
+    0, 0, 0, 1
+  ]);
+  const Rt = mat.trans(R);
+  const negRtT = mat.mulv(Rt, tv).map(v => -v);
+  assertMatrixClose(assert, mat.inv(rigid), mat(4, 4, [
+    ...mat.row(Rt, 1), negRtT[0],
+    ...mat.row(Rt, 2), negRtT[1],
+    ...mat.row(Rt, 3), negRtT[2],
+    0, 0, 0, 1
+  ]), '4x4 rigid transform (general rotation) inverse');
+});
+
+QUnit.test('Matrix inverse round-trips to identity', assert => {
+  // Small deterministic PRNG so the test is reproducible
+  let seed = 12345;
+  const random = () => {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    return seed / 2147483648;
+  };
+
+  for (let n = 1; n <= 5; n++) {
+    for (let k = 0; k < 5; k++) {
+      // Random entries in [-5, 5), with a dominant diagonal so the matrix is
+      // guaranteed to be non-singular
+      const a = mat(n, n, times(
+        i => (random() * 10 - 5) + (Math.floor(i / n) === i % n ? 6 * n : 0),
+        n * n
+      ));
+      const aInverse = mat.inv(a);
+      assert.ok(aInverse, `${n}x${n} matrix #${k} is invertible`);
+      assertMatrixClose(assert, mat.mul(a, aInverse), mat.identity(n), `${n}x${n} a * inv(a) = I (#${k})`);
+      assertMatrixClose(assert, mat.mul(aInverse, a), mat.identity(n), `${n}x${n} inv(a) * a = I (#${k})`);
+    }
+  }
 });
 
 QUnit.test('Matrix equality', assert => {

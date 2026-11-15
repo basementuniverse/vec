@@ -179,6 +179,7 @@ Important conventions:
 - mat.mulv returns false when a.n does not match input vector length.
 - mat.minor, mat.det, mat.nor, mat.inv require square matrices.
 - mat.inv also returns false for singular matrices (determinant 0).
+- Before 2.5.2, mat.adj applied cofactor signs by flat entry index instead of (-1)^(row + col), so mat.adj and mat.inv returned wrong results for even-sized matrices (2x2, 4x4, ...). For a 4x4 the "inverse" had its 2nd and 4th columns negated. Odd sizes (3x3, 5x5) were unaffected. 1x1 matrices were also wrong (mat.adj returned [0] and mat.inv returned [0]); 2.5.2 returns [1] and [1/a] respectively. If a consumer pinned to < 2.5.2 has workarounds for this, they must be removed on upgrade.
 
 About mat.nor:
 

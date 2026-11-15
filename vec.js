@@ -935,13 +935,19 @@ mat.nor = a => {
  * @return {mat} The adjugate of a
  */
 mat.adj = a => {
-  const minors = mat(a.m, a.n);
+  // The adjugate of a 1x1 matrix is [1] (the cofactor of its only entry is the
+  // determinant of an empty matrix, which is 1 by convention)
+  if (a.m === 1 && a.n === 1) {
+    return mat(1, 1, [1]);
+  }
+  const cofactors = mat(a.m, a.n);
   for (let i = 1; i <= a.m; i++) {
     for (let j = 1; j <= a.n; j++) {
-      mat.set(minors, i, j, mat.det(mat.minor(a, i, j)));
+      // Cofactor sign follows the checkerboard pattern (-1)^(i + j)
+      const sign = (i + j) % 2 ? -1 : 1;
+      mat.set(cofactors, i, j, sign * mat.det(mat.minor(a, i, j)));
     }
   }
-  const cofactors = mat.map(minors, (v, i) => v * (i % 2 ? -1 : 1));
   return mat.trans(cofactors);
 };
 
